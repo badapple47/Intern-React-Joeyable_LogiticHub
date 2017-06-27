@@ -14,14 +14,24 @@ class Service_Tracking extends Component {
       isActive: false,
       isLoading: true,
       data: [],
-      trackingnum: []
+      trackingnum: 'ET089578821TH'
     }
+
 
   }
 
-
+   
+   
+  
   
 
+   postTracking() {
+        axios.post('http://localhost:3001/API', this.state.trackingnum)
+            .then((res) => {
+                console.log(res)
+            })
+            
+    }
 
 
 
@@ -119,7 +129,8 @@ class Service_Tracking extends Component {
                 <h3>From :  </h3>
                 <h3>Delivery Date :  </h3>
                 <h3>To :  </h3>
-
+                
+                {this.postTracking()}
                 {this.getTracking()}
                 <div> {this.state.data.login} 
                 {this.state.data.id} 
