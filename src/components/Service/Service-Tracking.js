@@ -165,8 +165,7 @@ render(){
                         <h3>To :  </h3>
 
                             {this.getTracking()}
-                            <div>{this.state.data}</div>
-                        
+                            
 
                     </div>
 
