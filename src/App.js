@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Register from './components/Register/Register';
 import Promotion from './components/Promotion/Promotion';
-import Service_Tracking from './components/Service/Service-Tracking';
+import Service from './components/Service/Service';
 import { Route } from 'react-router-dom';
 
 
@@ -20,7 +20,7 @@ class App extends Component {
       <Route exact = {true} path = "/" component = {Home} />
       <Route path="/Register" component={Register} />
       <Route path="/promotion" component={Promotion} />
-      <Route path="/Service-Tracking" component={Service_Tracking} />
+      <Route path="/Service-Tracking" component={Service} />
       <Footer/>
       </div>
 
