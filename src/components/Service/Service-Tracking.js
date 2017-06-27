@@ -1,11 +1,40 @@
-import React  from 'react';
+import React , { Component } from 'react';
 import './Service-Tracking.css';
 import LogoCat from '../../pic/cat.jpg';
+import axios from 'axios'
 
 
 
-const Service_Tracking = () =>{
+class Service_Tracking extends Component{
 
+
+        constructor(props) {
+        super(props);
+        this.state = {
+            isActive: false,
+            isLoading: true,
+            data: {}
+        }
+      
+    }
+
+
+        
+
+
+
+     getTracking() {
+        axios.get('https://api.github.com/users/badapple47')
+  .then((response)=>{
+    console.log(response.data.login); // ex.: { user: 'Your User'}
+    this.setState({data: response.data}) // ex.: 200          
+            })
+    }
+
+
+
+
+render(){
     return (
 <div className="Service_Tracking">
 
@@ -22,7 +51,7 @@ const Service_Tracking = () =>{
 
                     <div className="profile-usertitle">
                     <div className="profile-usertitle-name">
-                    Marcus Doe
+                    Joey Pathompong
                     </div>
                     <div className="profile-usertitle-job">
                     Developer
@@ -135,6 +164,10 @@ const Service_Tracking = () =>{
                         <h3>Delivery Date :  </h3>
                         <h3>To :  </h3>
 
+                            {this.getTracking()}
+                            <div>{this.state.data}</div>
+                        
+
                     </div>
 
 
@@ -167,6 +200,8 @@ const Service_Tracking = () =>{
 </div>
 
     );
+
+};
   };
 
 

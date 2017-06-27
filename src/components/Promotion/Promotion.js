@@ -6,7 +6,7 @@ import Promotion_2 from '../../pic/Promotion-2.jpg';
 
 
 const Promotion = () =>{
-
+console.log("dd")
     return (
 <div>
 
