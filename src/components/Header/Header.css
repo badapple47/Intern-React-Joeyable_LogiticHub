@@ -1,0 +1,39 @@
+
+
+
+#header-top
+{
+padding-left : 85px;
+padding-top : 10px;
+}
+
+#header-bottom
+{
+  padding-top :14px;
+  padding-bottom :10px;
+  padding-left : 20px;
+
+}
+
+#header-logo
+{
+  padding-top :6px;
+}
+
+#header-background
+{
+	background-color: #FFF;
+}
+
+#test
+{
+	color :#ff0066 ;
+	background-color: #FFF;
+}
+
+
+#red .active a,
+#red .active a:hover {
+    background-color: #9B539C;
+    text-decoration-color:   #413F40;
+}
