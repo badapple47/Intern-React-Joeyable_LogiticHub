@@ -8,5 +8,11 @@
 
 #register-container
 {
-  background-color: #CCCCCC;
+ // background-color: #CCCCCC;
+}
+
+
+#register-form
+{
+  padding-top: 10px;
 }

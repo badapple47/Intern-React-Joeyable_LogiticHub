@@ -58,7 +58,7 @@ const Header = () =>{
 
                                           </li>
                                           <li role="presentation">
-                                            <a href="#">SERVICE</a>
+                                            <a href="/service">SERVICE</a>
                                           </li>
                                           <li role="presentation">
                                             <a href="/promotion">PROMOTION</a>

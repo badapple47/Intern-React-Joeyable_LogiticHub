@@ -20,7 +20,7 @@ class App extends Component {
       <Route exact = {true} path = "/" component = {Home} />
       <Route path="/Register" component={Register} />
       <Route path="/promotion" component={Promotion} />
-      <Route path="/Service-Tracking" component={Service} />
+      <Route path="/Service" component={Service} />
       <Footer/>
       </div>
 
