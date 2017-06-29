@@ -22,7 +22,7 @@ const Register= () =>{
                                           
                                           <form className="form-horizontal" id="register-form">
                                           <div className="form-group">
-                                            <label className="control-label col-sm-3" for="email">Email:</label>
+                                            <label className="control-label col-sm-3 " for="email">Email:</label>
                                             <div className="col-sm-8">
                                               <input type="Email" className="form-control" id="email" placeholder="Enter email"/>
                                             </div>
@@ -62,6 +62,8 @@ const Register= () =>{
                                             </div>
                                           </div>
 
+                                          <button type="button" className="btn btn-primary" id="register-button">Register</button>
+
 
                                           
                                         </form>
@@ -72,7 +74,10 @@ const Register= () =>{
 
                                       <div className="col-md-4">
 
-test
+                                        
+                                          
+                                        <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook"/>
+
 
 
                                         </div>

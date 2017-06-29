@@ -16,3 +16,18 @@
 {
   padding-top: 10px;
 }
+
+.form-group
+{
+  border-right: 1px dashed #CCCCCC;
+}
+
+#register-button
+{
+  margin-top: 40px;
+ margin-left: 230px;
+  width: 35%;
+  /*text-align: center;*/
+  background-color: #5C3258;
+}
+

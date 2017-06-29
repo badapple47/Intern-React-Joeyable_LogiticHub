@@ -1,6 +1,7 @@
 import React  from 'react';
 import './Header.css';
 import LogoImg from '../../pic/logotop.png';
+import Login from '../Login/Login';
 import  { Link } from 'react-router-dom';
 
 
@@ -9,7 +10,10 @@ const Header = () =>{
 
     return (
 
+      
+
                                   <div className="row" >
+                                     <Login />
                                     <nav className="navbar navbar-default navbar-fixed-top" id="header-background">
                                       <div className="container-fluid">
 
@@ -27,7 +31,7 @@ const Header = () =>{
                                         <div id="header-top">
 
                                             <ul className="nav nav-tabs" >
-                                      <li role="presentation" className="active"><a href="#">LOGIN</a></li>
+                                      <li role="presentation" className="active" data-toggle="modal" data-target="#login-modal" ><a href="#">LOGIN</a></li>
                                       <li role="presentation"><a href="/register">REGISTER</a></li>
                                       <li role="presentation"><a href="#">LANGUAGE</a></li>
 
@@ -42,7 +46,38 @@ const Header = () =>{
 
                                     </ul>
 
+                                   
 
+
+{/*modal*/}
+                            
+                                                    {/*<div className="container">
+  <h2>Modal Example</h2>
+
+  <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+  <div className="modal fade" id="myModal" role="dialog">
+    <div className="modal-dialog">
+    
+ 
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Modal Header</h4>
+        </div>
+        <div className="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>*/}
 
 
 
