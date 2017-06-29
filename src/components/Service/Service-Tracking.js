@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Service-Tracking.css';
 import LogoCat from '../../pic/cat.jpg';
 import axios from 'axios'
+import _ from 'lodash';
+
 
 
 
@@ -16,22 +18,23 @@ class Service_Tracking extends Component {
       isActive: false,
       isLoading: true,
       isToggleOn: false,
-      data: {},
-      trackingnum: 'ET089578821TH'
+      data:[],
+      datapost: {},
+     
     }
-                // { this.postTracking()}
-                // {this.getTracking()}
-      console.log(this.state.isToggleOn)
+
+    
+             
       this.handleChange = this.handleChange.bind(this)
       this.postTracking = this.postTracking.bind(this)
       this.togglepls = this.togglepls.bind(this);
-    //  console.log(this.state.data)
+
   }
 
    
     handleChange(e) {
-        console.log(e.target.name)
-        this.state.data[e.target.name] = e.target.value
+
+        this.state.datapost[e.target.name] = e.target.value
         this.setState(
             this.state
 
@@ -46,23 +49,29 @@ class Service_Tracking extends Component {
         const { refreshData } = this.props
         this.togglepls()
         console.log(this.state.isToggleOn)
-        axios.post('http://localhost:3002/inventory', this.state.data.trackno)
+        axios.post('http://localhost:3002/api1', this.state.datapost)
             .then((res) => {
                 console.log(res)
             }).then(() => {
                 refreshData()
-                this.setState({data: {}})
-                // {this.getTracking()}
+          
             })
     }
 
     
 
-  getTracking() {
-    axios.get('https://api.github.com/users/badapple47')
+getTracking() {
+    axios.get('http://localhost:3002/api1')
       .then((response) => {
-        // console.log(response.data.login); // ex.: { user: 'Your User'}
-        this.setState({ data: response.data }) // ex.: 200          
+        if(response){
+          console.log("response")
+          console.log(response.data);
+          this.setState({ data: response.data })
+        }else{
+        console.log("not response")
+        console.log(response.data[0]); 
+        this.setState({ data: response.data })         
+        }
       })
   }
 
@@ -83,7 +92,7 @@ class Service_Tracking extends Component {
           if (this.state.isToggleOn) {
      this.getTracking()
     } else {
-      console.log('error')
+      console.log('toggle true')
     }
 
     return (
@@ -102,8 +111,8 @@ class Service_Tracking extends Component {
                                   </h2>
           {/*<form action="Service-Tracking" method="post">*/}
             <div className="input-group" id="service-tracking-search">
-              <input type="text" className="form-control" placeholder="Input tracking number here..." name="trackno" value={this.state.data.trackno} onChange={this.handleChange}/>
-              {this.state.data.trackno}
+              <input type="text" className="form-control" placeholder="Input tracking number here..." name="trackno" value={this.state.datapost.trackno} onChange={this.handleChange}/>
+              
               
               <span className="input-group-btn">
                 <button className="btn btn-default" type="Submit" onClick={this.postTracking} >post</button>
@@ -123,8 +132,8 @@ class Service_Tracking extends Component {
             <div className="panel-body">
 
 
-              <h1> Tracking Number : XXXXXXXX </h1>
-
+              <h1> Tracking Number :  {this.state.data.trackno}</h1>
+              
 
 
                {/*Wizard Progressbar ja*/}
@@ -162,15 +171,16 @@ class Service_Tracking extends Component {
               {/*Tracking-detial 1 */}
 
 
-              <div id="service-tracking-detail1">
-                <h3>Tracking Number : {this.state.data.login} </h3>
-                <h3>Export Date : {this.state.data.created_at} </h3>
-                <h3>From : {this.state.data.type} </h3>
-                <h3>Delivery Date : {this.state.data.updated_at} </h3>
-                <h3>To : {this.state.data.url }</h3>
-                
-                
-              </div>
+               {/*<div id="service-tracking-detail1">
+              {this.state.data.map((each) =>(
+                <div>
+                <p> Tracking Number : {each.trackno}</p>
+                <p> Export : {each.updated_at}</p>
+                <p> Delivery : {each.message}</p>
+                <p> To : {each.location}</p> 
+                </div>           
+              ))}
+              </div>*/}
 
                            
 
@@ -179,174 +189,59 @@ class Service_Tracking extends Component {
 
                       {/*https://bootsnipp.com/snippets/featured/mobile-friendly-api-documentation*/}
        
-                      
-
-                      
-
                       <div className="method">
                           <div className="row margin-0 list-header hidden-sm hidden-xs">
-                              <div className="col-md-3"><div className="header">Property</div></div>
-                              <div className="col-md-2"><div className="header">Type</div></div>
-                              <div className="col-md-2"><div className="header">Required</div></div>
-                              <div className="col-md-5"><div className="header">Description</div></div>
+                              <div className="col-md-3"><div className="header">Date</div></div>
+                              <div className="col-md-3"><div className="header">Location</div></div>
+                              <div className="col-md-3"><div className="header">Status</div></div>
+                              <div className="col-md-3"><div className="header">Message</div></div>
                           </div>
+                        </div>
+                      {this.state.data.map((each) =>(
+                      
+
+                      
 
                           
+                        <div className="method">
+                          <div className="row margin-0">
 
-                          <div className="row margin-0">
                               <div className="col-md-3">
                                   <div className="cell">
                                       <div className="propertyname">
-                                          CurrencyCode  <span className="mobile-isrequired">[Required]</span>
+                                          {each.checkpoint_time}  <span className="mobile-isrequired"></span>
                                       </div>
                                   </div>
                               </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="type">
-                                          <code>String</code>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="isrequired">
-                                          Yes
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-5">
-                                  <div className="cell">
-                                      <div className="description">
-                                          The standard ISO 4217 3-letter currency code
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="row margin-0">
-                              <div className="col-md-3">
-                                  <div className="cell">
-                                      <div className="propertyname">
-                                          PriceType  <span className="mobile-isrequired">[Required]</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="type">
-                                          <code>Int32</code>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="isrequired">
-                                          Yes
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-5">
-                                  <div className="cell">
-                                      <div className="description">
-                                          The type of price
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="row margin-0">
-                              <div className="col-md-3">
-                                  <div className="cell">
-                                      <div className="propertyname">
-                                          WarehouseID  <span className="mobile-isrequired">[Required]</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="type">
-                                          <code>Int32</code>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="isrequired">
-                                          Yes
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-5">
-                                  <div className="cell">
-                                      <div className="description">
-                                          The unique identifier for the warehouse 
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="row margin-0">
-                              <div className="col-md-3">
-                                  <div className="cell">
-                                      <div className="propertyname">
-                                          ItemCodes
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="type">
-                                          <code>String[]</code>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
-                                      <div className="isrequired">
-                                          <span className="text-muted">No</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-5">
-                                  <div className="cell">
-                                      <div className="description">
 
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="row margin-0">
                               <div className="col-md-3">
                                   <div className="cell">
-                                      <div className="propertyname">
-                                          LanguageID
-                                          <a className="lookuplink" href="javascript:;">
-                                              <i className="glyphicon glyphicon-search"></i>
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="col-md-2">
-                                  <div className="cell">
                                       <div className="type">
-                                          <code>Int32?</code>
+                                        {each.location}
                                       </div>
                                   </div>
                               </div>
-                              <div className="col-md-2">
+
+                              <div className="col-md-3">
                                   <div className="cell">
                                       <div className="isrequired">
-                                          <span className="text-muted">No</span>
+                                           {each.message}
                                       </div>
                                   </div>
                               </div>
-                              <div className="col-md-5">
+
+                              <div className="col-md-3">
                                   <div className="cell">
                                       <div className="description">
-                                          The customer's preferred language ID (ex. 0 (English), 1 (Spanish), etc.)
+                                           -
                                       </div>
                                   </div>
                               </div>
                           </div>
-                      </div>
+
+                        
+                    </div>
+                      ))}
                   </div>
 
 
