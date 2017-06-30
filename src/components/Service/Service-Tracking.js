@@ -20,6 +20,7 @@ class Service_Tracking extends Component {
       isToggleOn: false,
       data:[],
       datapost: {},
+      trackingresult:[]
      
     }
 
@@ -48,10 +49,10 @@ class Service_Tracking extends Component {
     postTracking() {
         const { refreshData } = this.props
         this.togglepls()
-        console.log(this.state.isToggleOn)
+    //    console.log(this.state.isToggleOn)
         axios.post('http://localhost:3002/api1', this.state.datapost)
             .then((res) => {
-                console.log(res)
+     //           console.log(res)
             }).then(() => {
                 refreshData()
           
@@ -64,14 +65,16 @@ getTracking() {
     axios.get('http://localhost:3002/api1')
       .then((response) => {
         if(response){
-          console.log("response")
-          console.log(response.data);
+   //       console.log("response")
+   //       console.log(response.data);
           this.setState({ data: response.data })
         }else{
-        console.log("not response")
-        console.log(response.data[0]); 
+ //       console.log("not response")
+ //       console.log(response.data[0]); 
         this.setState({ data: response.data })         
         }
+      }).then(() => {
+                {this.bringfirstdata()}
       })
   }
 
@@ -80,6 +83,15 @@ getTracking() {
     this.setState({
       isToggleOn : !this.state.isToggleOn
     })
+  }
+
+  bringfirstdata(){
+   this.setState({
+     trackingresult : this.state.data[0]
+     
+
+   })
+   console.log(this.state.trackingresult.trackno)
   }
 
 
@@ -97,6 +109,8 @@ getTracking() {
 
     return (
       <div className="Service_Tracking">
+
+        
 
 
 
@@ -132,8 +146,8 @@ getTracking() {
             <div className="panel-body">
 
 
-              <h1> Tracking Number :  {this.state.data.trackno}</h1>
-              
+              <h1> Tracking Number :  {this.state.trackingresult.trackno}</h1>
+              {/*{console.log(this.state.data[0])}*/}
 
 
                {/*Wizard Progressbar ja*/}
