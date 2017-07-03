@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Service_Dashboard from './Service-Dashboard';
+import Service_Dashboard from './Dashboard/Service-Dashboard';
 
 import Service_Tracking from './Service-Tracking';
 import Service_Sidebar from './Service-Sidebar';
@@ -19,8 +19,8 @@ class Service extends Component {
           </div>
 
           <div className="col-md-9" >
-            {/*<Service_Dashboard/>*/}
-            <Service_Tracking />
+            <Service_Dashboard/>
+            {/*<Service_Tracking />*/}
           </div>
         </div>
 
