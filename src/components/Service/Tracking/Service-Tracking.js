@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Service-Tracking.css';
-import LogoCat from '../../pic/cat.jpg';
+import LogoCat from '../../../pic/cat.jpg';
 import axios from 'axios'
 import _ from 'lodash';
 

@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-
-import Service_Dashboard from './Dashboard/Service-Dashboard';
-import Service_CreateOrder from './Service-CreateOrder';
-import Service_Tracking from './Service-Tracking';
+import Service_CreateOrder from './CreateOrder/Service-CreateOrder';
 import Service_Sidebar from './Service-Sidebar';
 import { Route } from 'react-router-dom';
-import Service_CreateOrder_Modal from './Service-CreateOrder-Modal';
+import Service_CreateOrder_Modal from './CreateOrder/Service-CreateOrder-Modal';
 
 
-class Service extends Component {
+class CreateOrder extends Component {
   render() {
     return (
 
@@ -22,9 +19,7 @@ class Service extends Component {
             <Service_CreateOrder/>
             <Service_CreateOrder_Modal/>
 
-            {/*<Service_Dashboard/>*/}
-            
-            {/*<Service_Tracking />*/}
+         
           </div>
         </div>
 
@@ -36,4 +31,4 @@ class Service extends Component {
   }
 }
 
-export default Service;
+export default CreateOrder;

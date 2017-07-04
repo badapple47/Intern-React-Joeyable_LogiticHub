@@ -26,31 +26,31 @@ const Service_Sidebar = () => {
       </div>
 
       <div className="profile-userbuttons">
-        <button type="button" className="btn btn-success btn-sm">Follow</button>
-        <button type="button" className="btn btn-danger btn-sm">Message</button>
+        <a type="button" className="btn btn-success btn-sm" href="/service-Createorder" >Create Order</a>
+        <a type="button" className="btn btn-danger btn-sm">Notification</a>
       </div>
 
       <div className="profile-usermenu">
         <ul className="nav">
           <li className="active">
-            <a href="#">
+            <a href="/service">
               <i className="glyphicon glyphicon-home"></i>
-              Overview </a>
+              Dashboard </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/service-tracking">
               <i className="glyphicon glyphicon-user"></i>
-              Account Settings </a>
+              Tracking</a>
           </li>
           <li>
             <a href="#" target="_blank">
               <i className="glyphicon glyphicon-ok"></i>
-              Tasks </a>
+              NULL </a>
           </li>
           <li>
             <a href="#">
               <i className="glyphicon glyphicon-flag"></i>
-              Help </a>
+              NULL </a>
           </li>
         </ul>
       </div>
