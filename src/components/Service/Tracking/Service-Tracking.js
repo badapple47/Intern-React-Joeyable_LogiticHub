@@ -20,7 +20,7 @@ class Service_Tracking extends Component {
       isToggleOn: false,
       data:[],
       datapost: {},
-      trackingresult:[]
+      trackingresult:["simple"]
      
     }
 
@@ -49,12 +49,13 @@ class Service_Tracking extends Component {
     postTracking() {
         const { refreshData } = this.props
         this.togglepls()
-    //    console.log(this.state.isToggleOn)
+    
         axios.post('http://localhost:3002/api1', this.state.datapost)
             .then((res) => {
      //           console.log(res)
+                  this.setState({ data: res.data })
             }).then(() => {
-                refreshData()
+                // refreshData()
           
             })
     }
@@ -66,7 +67,7 @@ getTracking() {
       .then((response) => {
         if(response){
    //       console.log("response")
-   //       console.log(response.data);
+         console.log(response.data);
           this.setState({ data: response.data })
         }else{
  //       console.log("not response")
@@ -74,6 +75,7 @@ getTracking() {
         this.setState({ data: response.data })         
         }
       }).then(() => {
+                // console.log(this.state.data)
                 {this.bringfirstdata()}
       })
   }
@@ -91,7 +93,7 @@ getTracking() {
      
 
    })
-   console.log(this.state.trackingresult.trackno)
+    console.log(this.state.trackingresult.trackno)
   }
 
 
@@ -147,7 +149,7 @@ getTracking() {
 
 
               <h1> Tracking Number :  {this.state.trackingresult.trackno}</h1>
-              {/*{console.log(this.state.data[0])}*/}
+              
 
 
                {/*Wizard Progressbar ja*/}

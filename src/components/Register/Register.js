@@ -35,7 +35,7 @@ class Register extends Component {
       console.log(this.state.datapost)
         const { refreshData } = this.props
         this.togglepls()
-        axios.post('http://localhost:3002/api1', this.state.datapost)
+        axios.post('http://localhost:3002/auth', this.state.datapost)
             .then((res) => {
                 console.log(res)
             }).then(() => {
@@ -77,41 +77,41 @@ render() {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Email:</label>
                                             <div className="col-sm-8">
-                                              <input type="Email" className="form-control" id="email" placeholder="Enter email" name="email" value={this.state.datapost.name} onChange={this.handleChange}/>
+                                              <input type="Email" className="form-control" id="email" placeholder="Enter email" name="Email" value={this.state.datapost.name} onChange={this.handleChange}/>
                                             </div>
                                           </div>
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Password:</label>
                                             <div className="col-sm-8"> 
-                                              <input type="Password" className="form-control" id="pwd" placeholder="Enter password" name="password" value={this.state.datapost.password} onChange={this.handleChange}/>
+                                              <input type="Password" className="form-control" id="pwd" placeholder="Enter password" name="Pass" value={this.state.datapost.password} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 
                                            <div className="form-group">
                                             <label className="control-label col-sm-3" for="confpwd">Confirm Password:</label>
                                             <div className="col-sm-8"> 
-                                              <input type="Confirm Password" className="form-control" id="pwd" placeholder="Confirm Password" name="confirmpassword" value={this.state.datapost.confirmpassword} onChange={this.handleChange}/>
+                                              <input type="Password" className="form-control" id="pwd" placeholder="Confirm Password" name="confirmpassword" value={this.state.datapost.confirmpassword} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 
                                            <div className="form-group">
                                             <label className="control-label col-sm-3" for="firstname">First Name:</label>
                                             <div className="col-sm-8"> 
-                                              <input type="First Name" className="form-control" id="pwd" placeholder="First Name" name="firstname" value={this.state.datapost.firstname} onChange={this.handleChange}/>
+                                              <input type="First Name" className="form-control" id="pwd" placeholder="First Name" name="Firstname" value={this.state.datapost.firstname} onChange={this.handleChange}/>
                                             </div>
                                           </div>
                                           
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="lastname">Last Name:</label>
                                             <div className="col-sm-8"> 
-                                              <input type="Last Name" className="form-control" id="pwd" placeholder="Last Name" name="lastname" value={this.state.datapost.lastname} onChange={this.handleChange}/>
+                                              <input type="Last Name" className="form-control" id="pwd" placeholder="Last Name" name="Lastname" value={this.state.datapost.lastname} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="phonenum">Phone Number:</label>
                                             <div className="col-sm-8"> 
-                                              <input type="Phone Number" className="form-control" id="pwd" placeholder="Phone Number" name="phoneno" value={this.state.datapost.phoneno} onChange={this.handleChange}/>
+                                              <input type="Phone Number" className="form-control" id="pwd" placeholder="Phone Number" name="tel" value={this.state.datapost.phoneno} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 

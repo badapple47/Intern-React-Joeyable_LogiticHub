@@ -1,10 +1,85 @@
-import React  from 'react';
+import React , {Component } from 'react';
 import './Login.css';
 import LogoImg from '../../pic/logotop.png';
+import axios from 'axios'
 
 
+class Login extends Component {
 
-const Login= () =>{
+ constructor(props) {
+    super(props);
+    this.state = {
+
+
+      isToggleOn: false,
+      data: [],
+      datapost: {},
+      datafake : ["datanotfound"]
+
+    }
+        this.handleChange = this.handleChange.bind(this)
+      this.postTracking = this.postTracking.bind(this)
+       this.togglepls = this.togglepls.bind(this)
+    //    this.getTracking = this.getTracking.bind(this)
+ }
+
+  handleChange(e) {
+
+        this.state.datapost[e.target.name] = e.target.value
+        this.setState(
+            this.state
+
+        )
+    }
+
+      postTracking() {
+        //   console.log("postnaja")
+        //   console.log(this.state.datapost)
+        const { refreshData } = this.props
+        this.togglepls()
+    //    console.log(this.state.isToggleOn)
+        axios.post('http://localhost:3002/login/users/authenticate', this.state.datapost)
+            .then((res) => {
+               console.log(res)
+               this.setState({ data: res.data })
+            }).then(() => {
+                console.log(this.state.data)
+          
+            })
+    }
+
+    togglepls() {
+
+    this.setState({
+      isToggleOn : !this.state.isToggleOn
+    })
+  }
+
+
+// getTracking() {
+//     axios.get('http://localhost:3002/api1')
+//       .then((response) => {
+//         if(response){
+//    //       console.log("response")
+//    //       console.log(response.data);
+//           this.setState({ data: response.data })
+//         }else{
+//  //       console.log("not response")
+//  //       console.log(response.data[0]); 
+//         this.setState({ data: ["ELSE IN GETTRACKING"] })         
+//         }
+//       }).then(() => {
+//                  console.log(this.state.data)
+//       })
+//   }
+
+ render(){
+
+     if (this.state.isToggleOn) {
+    //  this.getTracking()
+    } else {
+      console.log('cant get Tracking ')
+    }
 
     return (
 
@@ -14,51 +89,7 @@ const Login= () =>{
            
 
 
-                            {/*<div id="login-modal" className="modal fade" role="dialog">
-                              <div className="modal-dialog">
-
-                               
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    <button type="button" className="close" data-dismiss="modal">&times;</button>
-                                    <h4 className="modal-title">Login</h4>
-                                  </div>
-                                  <div className="modal-body">
-                                    <img src={LogoImg} id="login-logo"/>
-
-
-                                    
-                                        <form className="form-horizontal" id="register-form">
-                                          <div className="form-group">
-                                            <label className="control-label col-sm-3 " for="email">Email:</label>
-                                            <div className="col-sm-8">
-                                              <input type="Email" className="form-control" id="email" placeholder="Enter email"/>
-                                            </div>
-                                          </div>
-                                          <div className="form-group">
-                                            <label className="control-label col-sm-3" for="pwd">Password:</label>
-                                            <div className="col-sm-8"> 
-                                              <input type="Password" className="form-control" id="pwd" placeholder="Enter password"/>
-                                            </div>
-                                          </div>
-
-                                          
-
-                                           <button type="button" className="btn btn-primary" id="login-button">Login</button>
-
-
-                                    </form>
-                                        <hr/>
-                                        <p>test</p>
-
-
-
-                                  </div>
-                            
-                                </div>
-
-                              </div>
-                            </div>*/}
+                           
 
                 <div id="login-modal" className="modal fade" role="dialog">
                     <div className="container">
@@ -71,7 +102,8 @@ const Login= () =>{
                                 <div className="panel panel-default">
                                     
                                     <div className="panel-heading">
-                                        <h3 className="panel-title">Login</h3>
+                                        <h3 className="panel-title"  >Login</h3>
+                                        
                                     </div>
                                     <div className="panel-body">
                                         <form accept-charset="UTF-8" role="form">
@@ -80,10 +112,10 @@ const Login= () =>{
                                             <img src={LogoImg} id="login-logo"/>
                                             
                                             <div className="form-group">
-                                                <input className="form-control" placeholder="yourmail@example.com" name="email" type="text"/>
+                                                <input className="form-control" placeholder="yourmail@example.com" name="Email" type="text" value={this.state.datapost.name} onChange={this.handleChange}/>
                                             </div>
                                             <div className="form-group">
-                                                <input className="form-control" placeholder="Password" name="password" type="password" value=""/>
+                                                <input className="form-control" placeholder="Password" name="Pass" type="password" value={this.state.datapost.name} onChange={this.handleChange}/>
                                             </div>
                                             <div className="checkbox">
                                                 <label>
@@ -91,12 +123,16 @@ const Login= () =>{
                                                 </label>
                                                 <a href="/register" data-toggle="modal" data-target="/register">Register</a>
                                             </div>
-                                            <input className="btn btn-lg btn-success btn-block" type="submit" value="Login"/>
+                                            <input className="btn btn-lg btn-success btn-block" type="submit" value="Login" onClick={this.postTracking}/>
+                                            
                                         </fieldset>
                                         </form>
                                         <hr/>
                                         <center><h4>OR</h4></center>
-                                        <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook"/>
+                                        <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook" />
+                                       
+                                         {/*<button className="btn btn-default" type="Submit" onClick={this.postTracking} >post</button>
+                                        <p> {this.state.data} </p>*/}
                                         
                                        
                                     </div>
@@ -118,6 +154,7 @@ const Login= () =>{
 
     );
   };
+};
 
 
 export default Login;
