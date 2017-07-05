@@ -50,35 +50,36 @@ class Service_Tracking extends Component {
         const { refreshData } = this.props
         this.togglepls()
     
-        axios.post('http://localhost:3002/api1', this.state.datapost)
+        axios.post('http://localhost:3002/trackno', this.state.datapost)
             .then((res) => {
      //           console.log(res)
                   this.setState({ data: res.data })
             }).then(() => {
                 // refreshData()
+                  {this.bringfirstdata()}
           
             })
     }
 
     
 
-getTracking() {
-    axios.get('http://localhost:3002/api1')
-      .then((response) => {
-        if(response){
-   //       console.log("response")
-         console.log(response.data);
-          this.setState({ data: response.data })
-        }else{
- //       console.log("not response")
- //       console.log(response.data[0]); 
-        this.setState({ data: response.data })         
-        }
-      }).then(() => {
-                // console.log(this.state.data)
-                {this.bringfirstdata()}
-      })
-  }
+// getTracking() {
+//     axios.get('http://localhost:3002/api1')
+//       .then((response) => {
+//         if(response){
+//    //       console.log("response")
+//          console.log(response.data);
+//           this.setState({ data: response.data })
+//         }else{
+//  //       console.log("not response")
+//  //       console.log(response.data[0]); 
+//         this.setState({ data: response.data })         
+//         }
+//       }).then(() => {
+//                 // console.log(this.state.data)
+              
+//       })
+//   }
 
   togglepls() {
 
@@ -93,7 +94,7 @@ getTracking() {
      
 
    })
-    console.log(this.state.trackingresult.trackno)
+    // console.log(this.state.trackingresult.trackno)
   }
 
 
@@ -104,7 +105,7 @@ getTracking() {
   render() {
 
           if (this.state.isToggleOn) {
-     this.getTracking()
+    //  this.getTracking()
     } else {
       console.log('toggle true')
     }

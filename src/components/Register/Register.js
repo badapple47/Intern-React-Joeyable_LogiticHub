@@ -35,11 +35,11 @@ class Register extends Component {
       console.log(this.state.datapost)
         const { refreshData } = this.props
         this.togglepls()
-        axios.post('http://localhost:3002/auth', this.state.datapost)
+        axios.post('http://localhost:3002/register', this.state.datapost)
             .then((res) => {
                 console.log(res)
             }).then(() => {
-                refreshData()
+                // refreshData()
                // this.setState({data: {}})
                
             })

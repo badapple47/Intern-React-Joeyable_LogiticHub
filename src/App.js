@@ -11,6 +11,7 @@ import { Route } from 'react-router-dom';
 import Dashboard from './components/Service/Dashboard';
 import Tracking from './components/Service/Tracking';
 import CreateOrder from './components/Service/CreateOrder';
+import Booking from './components/Service/Booking';
 
 
 
@@ -26,6 +27,7 @@ class App extends Component {
       <Route path="/Service" component={Dashboard} />
       <Route path="/Service-Tracking" component={Tracking} />
       <Route path="/Service-CreateOrder" component={CreateOrder} />
+      <Route path="/Service-Booking" component={Booking} />
       <Route path="/Login" component={Login} />
       <Footer/>
       </div>

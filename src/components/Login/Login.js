@@ -12,7 +12,7 @@ class Login extends Component {
 
 
       isToggleOn: false,
-      data: [],
+      data: ["test"],
       datapost: {},
       datafake : ["datanotfound"]
 
@@ -38,9 +38,9 @@ class Login extends Component {
         const { refreshData } = this.props
         this.togglepls()
     //    console.log(this.state.isToggleOn)
-        axios.post('http://localhost:3002/login/users/authenticate', this.state.datapost)
+        axios.post('http://localhost:3002/login', this.state.datapost)
             .then((res) => {
-               console.log(res)
+            //    console.log(res)
                this.setState({ data: res.data })
             }).then(() => {
                 console.log(this.state.data)
@@ -131,8 +131,7 @@ class Login extends Component {
                                         <center><h4>OR</h4></center>
                                         <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook" />
                                        
-                                         {/*<button className="btn btn-default" type="Submit" onClick={this.postTracking} >post</button>
-                                        <p> {this.state.data} </p>*/}
+                                         {/*<p> user token : {this.state.data} </p>*/}
                                         
                                        
                                     </div>
