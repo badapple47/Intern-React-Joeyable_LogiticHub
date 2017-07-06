@@ -136,7 +136,8 @@ class Service_CreateOrder extends Component {
                           <div className = "container">
                             <center>
                            <button type="button" className="btn btn-default " id="CreateOrder-SavenAddmore-buttton">Save and Add more</button>
-                           <button type="button" className="btn purple-background white "id="CreateOrder-Save-button" >Save</button>
+                           <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/service-booking">Save</a>
+
                           
                            </center>
                           </div>

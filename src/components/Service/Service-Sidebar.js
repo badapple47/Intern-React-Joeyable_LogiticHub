@@ -43,14 +43,14 @@ const Service_Sidebar = () => {
               Tracking</a>
           </li>
           <li>
-            <a href="#" target="_blank">
+            <a href="/service-booking" target="_blank">
               <i className="glyphicon glyphicon-ok"></i>
-              NULL </a>
+              Booking </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/service-booking-dropoff">
               <i className="glyphicon glyphicon-flag"></i>
-              NULL </a>
+              Dropoff </a>
           </li>
         </ul>
       </div>

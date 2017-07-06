@@ -12,6 +12,9 @@ import Dashboard from './components/Service/Dashboard';
 import Tracking from './components/Service/Tracking';
 import CreateOrder from './components/Service/CreateOrder';
 import Booking from './components/Service/Booking';
+import Booking_Dropoff from './components/Service/Booking-Dropoff';
+import Booking_Checkinfo from './components/Service/Booking-Checkinfo';
+
 
 
 
@@ -28,6 +31,8 @@ class App extends Component {
       <Route path="/Service-Tracking" component={Tracking} />
       <Route path="/Service-CreateOrder" component={CreateOrder} />
       <Route path="/Service-Booking" component={Booking} />
+      <Route path="/Service-Booking-Dropoff" component={Booking_Dropoff} />
+      <Route path="/Service-Booking-Checkinfo" component={Booking_Checkinfo} />
       <Route path="/Login" component={Login} />
       <Footer/>
       </div>

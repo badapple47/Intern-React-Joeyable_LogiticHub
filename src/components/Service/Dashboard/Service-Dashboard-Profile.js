@@ -29,7 +29,8 @@ const Service_Dashboard_Profile = () => {
 
                                             <p> Joey Pathompong </p>
                                             <p> J Point :  </p>
-                                            <button type="button" className="btn purple-background white">Create Order</button>
+                                            <a type="button" className="btn purple-background white" href="/service-createorder" >Create Order</a>
+                                           
                                         </center>
                                     </div>
 

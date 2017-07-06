@@ -1,120 +1,88 @@
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import './Service-Booking-Dropoff.css';
 
-/* global google */
-import _ from "lodash";
-
-import {
-  default as React,
-  Component,
-} from "react";
-
-import Helmet from "react-helmet";
-
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-
-/*
- * This is the modify version of:
- * https://developers.google.com/maps/documentation/javascript/examples/event-arguments
- *
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
- */
-const GettingStartedGoogleMap = withGoogleMap(props => (
-  <GoogleMap
-    ref={props.onMapLoad}
-    defaultZoom={3}
-    defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-    onClick={props.onMapClick}
-  >
-    {props.markers.map(marker => (
-      <Marker
-        {...marker}
-        onRightClick={() => props.onMarkerRightClick(marker)}
-      />
-    ))}
-  </GoogleMap>
-));
 
 class Service_Booking_Dropoff extends Component {
-
-  state = {
-    markers: [{
-      position: {
-        lat: 25.0112183,
-        lng: 121.52067570000001,
-      },
-      key: `Taiwan`,
-      defaultAnimation: 2,
-    }],
-  };
-
-  handleMapLoad = this.handleMapLoad.bind(this);
-  handleMapClick = this.handleMapClick.bind(this);
-  handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
-
-  handleMapLoad(map) {
-    this._mapComponent = map;
-    if (map) {
-      console.log(map.getZoom());
-    }
-  }
-
-  /*
-   * This is called when you click on the map.
-   * Go and try click now.
-   */
-  handleMapClick(event) {
-    const nextMarkers = [
-      ...this.state.markers,
-      {
-        position: event.latLng,
-        defaultAnimation: 2,
-        key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-      },
-    ];
-    this.setState({
-      markers: nextMarkers,
-    });
-
-    if (nextMarkers.length === 3) {
-      this.props.toast(
-        `Right click on the marker to remove it`,
-        `Also check the code!`
-      );
-    }
-  }
-
-  handleMarkerRightClick(targetMarker) {
-    /*
-     * All you modify is data, and the view is driven by data.
-     * This is so called data-driven-development. (And yes, it's now in
-     * web front end and even with google maps API.)
-     */
-    const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-    this.setState({
-      markers: nextMarkers,
-    });
-  }
-
   render() {
     return (
-      <div style={{height: `100%`}}>
-        <Helmet
-          title="Getting Started"
-        />
-        <GettingStartedGoogleMap
-          containerElement={
-            <div style={{ height: `100%` }} />
-          }
-          mapElement={
-            <div style={{ height: `100%` }} />
-          }
-          onMapLoad={this.handleMapLoad}
-          onMapClick={this.handleMapClick}
-          markers={this.state.markers}
-          onMarkerRightClick={this.handleMarkerRightClick}
-        />
+
+      <div className="childofbooking">
+
+
+        <div className="row bs-wizard " id="pginchildofbooking" >
+
+          <div className="col-xs-2 bs-wizard-step complete">
+            <div className="text-center bs-wizard-stepnum">Step 1</div>
+            <div className="progress"><div className="progress-bar"></div></div>
+            <a href="#" className="bs-wizard-dot"></a>
+            <div className="bs-wizard-info text-center">Choose Dropoff</div>
+          </div>
+
+
+          <div className="col-xs-2 bs-wizard-step active">
+            <div className="text-center bs-wizard-stepnum">Step 2</div>
+            <div className="progress"><div className="progress-bar"></div></div>
+            <a href="#" className="bs-wizard-dot"></a>
+            <div className="bs-wizard-info text-center">Check Information</div>
+          </div>
+
+          <div className="col-xs-2 bs-wizard-step disabled">
+            <div className="text-center bs-wizard-stepnum">Step 3</div>
+            <div className="progress"><div className="progress-bar"></div></div>
+            <a href="#" className="bs-wizard-dot"></a>
+            <div className="bs-wizard-info text-center">Payment</div>
+          </div>
+
+          <div className="col-xs-2 bs-wizard-step disabled">
+            <div className="text-center bs-wizard-stepnum">Step 4</div>
+            <div className="progress"><div className="progress-bar"></div></div>
+            <a href="#" className="bs-wizard-dot"></a>
+            <div className="bs-wizard-info text-center">Complete</div>
+          </div>
+
+        </div>
+
+        <center>
+          <h3 id="Dropoff-choosedropofftxt">Choose Dropoff </h3>
+          <div className="input-group" id="dropoffsearchbar">
+            <input type="text" className="form-control" placeholder="address..." name="trackno" />
+
+
+            <span className="input-group-btn">
+              <button className="btn btn-default" type="Submit"  >Search</button>
+              {/*<button className="btn btn-default" type="Submit" onClick={this.getTracking}>get</button>*/}
+            </span>
+
+          </div>
+
+                             <div className="list-group" id="dropoff-locationlist">
+                              <a href="#" className="list-group-item active">
+                                Joeyable Bangyai
+                              </a>
+                              <a href="#" className="list-group-item">Joeyable RamaII</a>
+                              <a href="#" className="list-group-item">Joeyable Salaya</a>
+                              <a href="#" className="list-group-item">Joeyable Thonglor</a>
+                              <a href="#" className="list-group-item">Joeyable Krungton</a>
+                            </div>
+                            
+                          
+
+        </center>
+
+
+        <button type="button" className="btn purple-background white glyphicon glyphicon-arrow-right" id="service-createorder-importfilebut" aria-hidden="true">   NEXT</button>
+
+
+
+
       </div>
+
+
+
+
     );
   }
 }
 
-export default Service_Booking_Dropoff ;
+export default Service_Booking_Dropoff;
