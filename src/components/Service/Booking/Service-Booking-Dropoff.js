@@ -71,7 +71,7 @@ class Service_Booking_Dropoff extends Component {
         </center>
 
 
-        <button type="button" className="btn purple-background white glyphicon glyphicon-arrow-right" id="service-createorder-importfilebut" aria-hidden="true">   NEXT</button>
+        <a type="button" className="btn purple-background white glyphicon glyphicon-arrow-right" id="service-createorder-importfilebut" aria-hidden="true" href="/Service-Booking-Checkinfo">   NEXT</a>
 
 
 

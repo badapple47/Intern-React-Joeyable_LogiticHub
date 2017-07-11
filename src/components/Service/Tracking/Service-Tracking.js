@@ -4,7 +4,20 @@ import LogoCat from '../../../pic/cat.jpg';
 import axios from 'axios'
 import _ from 'lodash';
 
-
+var token = "1231313"
+axios({
+ 
+  method:'post',
+  url:'http://localhost:3002/trackno',
+   data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  },
+    headers: { Authorization: "Bearer " + token }
+})
+  .then(function(response) {
+  console.log(response)
+});
 
 
 class Service_Tracking extends Component {
@@ -20,7 +33,8 @@ class Service_Tracking extends Component {
       isToggleOn: false,
       data:[],
       datapost: {},
-      trackingresult:["simple"]
+      trackingresult:{trackno: "test"},
+      token : "123132313"
      
     }
 
@@ -36,6 +50,7 @@ class Service_Tracking extends Component {
     handleChange(e) {
 
         this.state.datapost[e.target.name] = e.target.value
+        // this.state.datapost[e.target.name.this.state.p] = e.target.value
         this.setState(
             this.state
 
@@ -46,20 +61,27 @@ class Service_Tracking extends Component {
 
 
 
+
     postTracking() {
+
+      //  this.setState({ trackingresult : window.location.pathname })
+      
         const { refreshData } = this.props
         this.togglepls()
-    
-        axios.post('http://localhost:3002/trackno', this.state.datapost)
+    console.log(this.state.token)
+        axios.post('http://localhost:3002/trackno', this.state.trackingresult , this.state.token)
             .then((res) => {
      //           console.log(res)
                   this.setState({ data: res.data })
             }).then(() => {
                 // refreshData()
                   {this.bringfirstdata()}
+                  console.log(this.state.token)
           
             })
     }
+
+
 
     
 
@@ -132,7 +154,7 @@ class Service_Tracking extends Component {
               
               
               <span className="input-group-btn">
-                <button className="btn btn-default" type="Submit" onClick={this.postTracking} >post</button>
+                <button className="btn btn-default" type="Submit" onClick={this.axiostoken} >post</button>
                 {/*<button className="btn btn-default" type="Submit" onClick={this.getTracking}>get</button>*/}
               </span>
 
@@ -150,6 +172,7 @@ class Service_Tracking extends Component {
 
 
               <h1> Tracking Number :  {this.state.trackingresult.trackno}</h1>
+              {window.location.pathname}
               
 
 

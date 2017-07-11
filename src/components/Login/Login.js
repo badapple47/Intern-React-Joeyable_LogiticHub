@@ -14,7 +14,8 @@ class Login extends Component {
       isToggleOn: false,
       data: ["test"],
       datapost: {},
-      datafake : ["datanotfound"]
+      datafake : ["datanotfound"],
+      token : "123111323"
 
     }
         this.handleChange = this.handleChange.bind(this)
@@ -32,6 +33,8 @@ class Login extends Component {
         )
     }
 
+      
+
       postTracking() {
         //   console.log("postnaja")
         //   console.log(this.state.datapost)
@@ -44,7 +47,24 @@ class Login extends Component {
                this.setState({ data: res.data })
             }).then(() => {
                 console.log(this.state.data)
+                
           
+            }).then(()=> {
+                        axios({
+                        
+                          method:'post',
+                          url:'http://localhost:3002/trackno',
+                          data: {
+                            firstName: 'Fred',
+                            lastName: 'Flintstone'
+                          },
+                            headers: { Authorization: "Bearer " + this.state.token }
+                        })
+                          .then(function(response) {
+                          console.log(response)
+                        });
+
+
             })
     }
 
@@ -114,15 +134,18 @@ class Login extends Component {
                                             <div className="form-group">
                                                 <input className="form-control" placeholder="yourmail@example.com" name="Email" type="text" value={this.state.datapost.name} onChange={this.handleChange}/>
                                             </div>
+
                                             <div className="form-group">
                                                 <input className="form-control" placeholder="Password" name="Pass" type="password" value={this.state.datapost.name} onChange={this.handleChange}/>
                                             </div>
+
                                             <div className="checkbox">
                                                 <label>
                                                     <input name="remember" type="checkbox" value="Remember Me"/> Remember Me
                                                 </label>
                                                 <a href="/register" data-toggle="modal" data-target="/register">Register</a>
                                             </div>
+
                                             <input className="btn btn-lg btn-success btn-block" type="submit" value="Login" onClick={this.postTracking}/>
                                             
                                         </fieldset>
