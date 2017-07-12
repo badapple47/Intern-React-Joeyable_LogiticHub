@@ -25,7 +25,7 @@ import {
 
 
 function loggedIn() {
-  return false ;
+  return true ;
 }
 
 function requireAuth(nextState, replace) {
@@ -62,10 +62,18 @@ class App extends Component {
       <Header/>
       
       <Route exact = {true} path = "/" component = {Home} />
+
+      <Route exact path="/Service" render={() => (
+        loggedIn ? (
+          <Redirect to="/"/>
+        ) : (
+          <Home/>
+        )
+      )}/>
       
       <Route path="/Register" component={Register} />
       <Route path="/promotion" component={Promotion} />
-      <Route path="/Service" component={Dashboard} onEnter={requireAuth} />
+      <Route path="/Service" component={Dashboard}  />
       <Route path="/Service-Tracking" component={Tracking} />
       <Route path="/Service-CreateOrder" component={CreateOrder} />
       <Route path="/Service-Booking" component={Booking} />
@@ -74,7 +82,7 @@ class App extends Component {
       <Route path="/Login" component={Login} />
       
       <Footer/>
-      
+
       {/*<Header/>
        <Route path="/" component={Home}>
       <Route path="/promotion" component={Promotion} />

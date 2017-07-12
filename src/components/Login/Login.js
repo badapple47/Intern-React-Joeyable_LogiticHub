@@ -15,7 +15,8 @@ class Login extends Component {
       data: ["test"],
       datapost: {},
       datafake : ["datanotfound"],
-      token : "123111323"
+      token : localStorage.getItem('Token'),
+      isModalOpen : true
 
     }
         this.handleChange = this.handleChange.bind(this)
@@ -23,6 +24,13 @@ class Login extends Component {
        this.togglepls = this.togglepls.bind(this)
     //    this.getTracking = this.getTracking.bind(this)
  }
+
+
+     handleModalToggle() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    });
+  }
 
   handleChange(e) {
 
@@ -50,19 +58,20 @@ class Login extends Component {
                 
           
             }).then(()=> {
-                        axios({
+                        // axios({
                         
-                          method:'post',
-                          url:'http://localhost:3002/trackno',
-                          data: {
-                            firstName: 'Fred',
-                            lastName: 'Flintstone'
-                          },
-                            headers: { Authorization: "Bearer " + this.state.token }
-                        })
-                          .then(function(response) {
-                          console.log(response)
-                        });
+                        //   method:'post',
+                        //   url:'http://localhost:3002/trackno',
+                        //   data: {
+                        //     firstName: 'Fred',
+                        //     lastName: 'Flintstone'
+                        //   },
+                        //     headers: { Authorization: "Bearer " + this.state.data.token }
+                        // })
+                        //   .then(function(response) {
+                        //   console.log(response)
+                        // });
+                        localStorage.setItem('Token', JSON.stringify(this.state.data.token));
 
 
             })
@@ -145,8 +154,9 @@ class Login extends Component {
                                                 </label>
                                                 <a href="/register" data-toggle="modal" data-target="/register">Register</a>
                                             </div>
-
-                                            <input className="btn btn-lg btn-success btn-block" type="submit" value="Login" onClick={this.postTracking}/>
+                                            
+                                            <button type = "button" className = "btn btn-primary" onClick={this.postTracking} >Login Button</button>
+                                            {/*<input className="btn btn-lg btn-success btn-block" type="submit" value="Login" onClick={this.postTracking}/>*/}
                                             
                                         </fieldset>
                                         </form>
@@ -155,6 +165,16 @@ class Login extends Component {
                                         <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook" />
                                        
                                          {/*<p> user token : {this.state.data} </p>*/}
+                                         <span className="button"  data-dismiss="modal" aria-label="Close">cancel</span>
+
+
+
+                                        
+                                         <div className="alert alert-danger" role="alert">
+                                            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                            <span className="sr-only">Error:</span>
+                                            Enter a valid email address
+                                        </div>
                                         
                                        
                                     </div>
