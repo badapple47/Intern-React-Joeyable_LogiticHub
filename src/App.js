@@ -63,13 +63,13 @@ class App extends Component {
       
       <Route exact = {true} path = "/" component = {Home} />
 
-      <Route exact path="/Service" render={() => (
-        loggedIn ? (
-          <Redirect to="/"/>
-        ) : (
-          <Home/>
-        )
-      )}/>
+      {/*<Route exact path="/" render={() => (
+      loggedIn ? (
+        <Redirect to="/dashboard"/>
+      ) : (
+        <PublicHomePage/>
+      )
+    )}/>*/}
       
       <Route path="/Register" component={Register} />
       <Route path="/promotion" component={Promotion} />

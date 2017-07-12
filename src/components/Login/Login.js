@@ -2,6 +2,13 @@ import React , {Component } from 'react';
 import './Login.css';
 import LogoImg from '../../pic/logotop.png';
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
 
 
 class Login extends Component {
@@ -16,7 +23,8 @@ class Login extends Component {
       datapost: {},
       datafake : ["datanotfound"],
       token : localStorage.getItem('Token'),
-      isModalOpen : true
+      isModalOpen : true,
+      Basicprofile : []
 
     }
         this.handleChange = this.handleChange.bind(this)
@@ -58,20 +66,29 @@ class Login extends Component {
                 
           
             }).then(()=> {
-                        // axios({
+                        axios({
                         
-                        //   method:'post',
-                        //   url:'http://localhost:3002/trackno',
-                        //   data: {
-                        //     firstName: 'Fred',
-                        //     lastName: 'Flintstone'
-                        //   },
-                        //     headers: { Authorization: "Bearer " + this.state.data.token }
-                        // })
-                        //   .then(function(response) {
-                        //   console.log(response)
-                        // });
+                          method:'post',
+                          url:'http://localhost:3002/users',
+                          data: {
+                            firstName: 'Fred',
+                            lastName: 'Flintstone'
+                          },
+                            headers: { Authorization: this.state.data.token }
+                        })
+                          .then((response)=> {
+                        //   console.log(response.data)
+                           this.setState({ Basicprofile: response.data[0].Firstname })
+                        //    console.log(this.state.Basicprofile[0].Firstname)
+                        //    console.log(this.state.data.token)
+                        });
+                        
+
+
+            }).then(()=> {
+                       
                         localStorage.setItem('Token', JSON.stringify(this.state.data.token));
+                        localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
 
 
             })
@@ -125,12 +142,15 @@ class Login extends Component {
     // } else {
     //   console.log('cant get Tracking ')
     // }
+
     
      let userMessage;
-    if (this.state.token !== 'undefined') {
+    if (this.state.token !== 'undefined' && this.state.token !== null) {
       userMessage = (
         <span>
+            
           <h2>{ `Welcome Back` }</h2>
+           {/*<Redirect to="/Service"/>*/}
         </span>
       )
     } else {

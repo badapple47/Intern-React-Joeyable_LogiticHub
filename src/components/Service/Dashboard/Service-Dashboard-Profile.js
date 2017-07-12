@@ -15,7 +15,8 @@ class Service_Dashboard_Profile extends Component {
     //   data: ["test"],
     //   datapost: {},
     //   datafake : ["datanotfound"],
-    //   token : localStorage.getItem('Token'),
+       token : localStorage.getItem('Token'),
+       Basicprofile : localStorage.getItem('Basicprofile')
     //   isModalOpen : true
 
     }
@@ -23,6 +24,7 @@ class Service_Dashboard_Profile extends Component {
     //   this.postTracking = this.postTracking.bind(this)
     //    this.togglepls = this.togglepls.bind(this)
     //    this.getTracking = this.getTracking.bind(this)
+    console.log(this.state.Basicprofile)
  }
 
     render(){
@@ -48,8 +50,9 @@ class Service_Dashboard_Profile extends Component {
                                                 <img src={LogoCat} className="img-responsive" alt="" />
                                             </div>
 
-                                            <p> Joey Pathompong </p>
+                                            <p> {this.state.Basicprofile} </p>
                                             <p> J Point :  </p>
+                                            {this.state.token}
                                             <a type="button" className="btn purple-background white" href="/service-createorder" >Create Order</a>
                                            
                                         </center>
