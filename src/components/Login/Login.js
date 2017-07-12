@@ -84,6 +84,22 @@ class Login extends Component {
     })
   }
 
+//     loginornot(){
+//    let userMessage;
+//     if (true) {
+//       userMessage = (
+//         <span>
+//           <h2>{ `Welcome Back ${ this.state.token }` }</h2>
+         
+//           <p>You can visit settings to reset your password</p>
+//         </span>
+//       )
+//     } else {
+//       userMessage = (
+//         <h2>Hey man! Sign in to see this section</h2>
+//       )
+//     }
+// }
 
 // getTracking() {
 //     axios.get('http://localhost:3002/api1')
@@ -104,10 +120,25 @@ class Login extends Component {
 
  render(){
 
-     if (this.state.isToggleOn) {
-    //  this.getTracking()
+    //  if (this.state.isToggleOn) {
+    // //  this.getTracking()
+    // } else {
+    //   console.log('cant get Tracking ')
+    // }
+    
+     let userMessage;
+    if (this.state.token !== 'undefined') {
+      userMessage = (
+        <span>
+          <h2>{ `Welcome Back` }</h2>
+        </span>
+      )
     } else {
-      console.log('cant get Tracking ')
+      userMessage = (
+          <center>
+        <p>Please sign in to see service page</p>
+        </center>
+      )
     }
 
     return (
@@ -150,12 +181,13 @@ class Login extends Component {
 
                                             <div className="checkbox">
                                                 <label>
-                                                    <input name="remember" type="checkbox" value="Remember Me"/> Remember Me
+                                                    {/*<input name="remember" type="checkbox" value="Remember Me"/> Remember Me*/}
+                                                    <a href="/register" data-toggle="modal" data-target="/register">Register</a>
                                                 </label>
-                                                <a href="/register" data-toggle="modal" data-target="/register">Register</a>
+                                                
                                             </div>
                                             
-                                            <button type = "button" className = "btn btn-primary" onClick={this.postTracking} >Login Button</button>
+                                            <button type = "button" className = "btn btn-primary" id="login-button" onClick={this.postTracking} >Login</button>
                                             {/*<input className="btn btn-lg btn-success btn-block" type="submit" value="Login" onClick={this.postTracking}/>*/}
                                             
                                         </fieldset>
@@ -165,16 +197,15 @@ class Login extends Component {
                                         <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook" />
                                        
                                          {/*<p> user token : {this.state.data} </p>*/}
-                                         <span className="button"  data-dismiss="modal" aria-label="Close">cancel</span>
+                                         {/*<span className="button"  data-dismiss="modal" aria-label="Close">cancel</span>*/}
 
 
 
                                         
-                                         <div className="alert alert-danger" role="alert">
-                                            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                            <span className="sr-only">Error:</span>
-                                            Enter a valid email address
-                                        </div>
+                                        
+                                        
+                                        {userMessage}
+                                        
                                         
                                        
                                     </div>

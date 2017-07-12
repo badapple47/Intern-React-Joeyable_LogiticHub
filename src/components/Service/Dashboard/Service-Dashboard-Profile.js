@@ -4,7 +4,28 @@ import LogoCat from '../../../pic/cat.jpg';
 
 
 
-const Service_Dashboard_Profile = () => {
+class Service_Dashboard_Profile extends Component {
+
+     constructor(props) {
+    super(props);
+    this.state = {
+
+
+    //   isToggleOn: false,
+    //   data: ["test"],
+    //   datapost: {},
+    //   datafake : ["datanotfound"],
+    //   token : localStorage.getItem('Token'),
+    //   isModalOpen : true
+
+    }
+    //     this.handleChange = this.handleChange.bind(this)
+    //   this.postTracking = this.postTracking.bind(this)
+    //    this.togglepls = this.togglepls.bind(this)
+    //    this.getTracking = this.getTracking.bind(this)
+ }
+
+    render(){
 
     return (
 
@@ -86,7 +107,8 @@ const Service_Dashboard_Profile = () => {
         </div>
 
 
-    );
+   );
+  };
 };
 
 export default Service_Dashboard_Profile;   

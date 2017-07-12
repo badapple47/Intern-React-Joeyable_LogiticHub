@@ -2,6 +2,13 @@
 {
     margin-top: 100px;
 }
+#login-button
+{   
+    width: 330px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
 #login-logo
 {
     width: 60%;
