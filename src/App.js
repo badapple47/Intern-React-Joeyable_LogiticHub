@@ -15,6 +15,7 @@ import CreateOrder from './components/Service/CreateOrder';
 import Booking from './components/Service/Booking';
 import Booking_Dropoff from './components/Service/Booking-Dropoff';
 import Booking_Checkinfo from './components/Service/Booking-Checkinfo';
+import CreateOrder_Logistic from './components/Service/CreateOrder-Logistic';
 import {
   BrowserRouter as Router,
   Route,
@@ -25,7 +26,7 @@ import {
 
 
 function loggedIn() {
-  return true ;
+  return false;
 }
 
 function requireAuth(nextState, replace) {
@@ -63,11 +64,11 @@ class App extends Component {
       
       <Route exact = {true} path = "/" component = {Home} />
 
-      {/*<Route exact path="/" render={() => (
+      {/*<Route exact path="/Service" render={() => (
       loggedIn ? (
-        <Redirect to="/dashboard"/>
+        <Redirect to="/Service"/>
       ) : (
-        <PublicHomePage/>
+        <Register/>
       )
     )}/>*/}
       
@@ -79,6 +80,7 @@ class App extends Component {
       <Route path="/Service-Booking" component={Booking} />
       <Route path="/Service-Booking-Dropoff" component={Booking_Dropoff} />
       <Route path="/Service-Booking-Checkinfo" component={Booking_Checkinfo} />
+      <Route path="/Service-CreateOrder-Logistic" component={CreateOrder_Logistic} />
       <Route path="/Login" component={Login} />
       
       <Footer/>

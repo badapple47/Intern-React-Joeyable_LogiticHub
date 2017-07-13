@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Service_Dashboard from './Dashboard/Service-Dashboard';
-import Service_Sidebar from './Service-Sidebar';
 import { Route } from 'react-router-dom';
+import Service_Sidebar from './Service-Sidebar';
+
+import Service_CreateOrder_Logistic from './CreateOrder/Service-CreateOrder-Logistic';
 
 
-class Dashboard extends Component {
-
+class CreateOrder_Logistic extends Component {
   render() {
     return (
 
@@ -16,11 +16,10 @@ class Dashboard extends Component {
           </div>
 
           <div className="col-md-9" >
-           
+            {/*<Service_Booking>*/}
+            <Service_CreateOrder_Logistic />
 
-            <Service_Dashboard/>
-            
-          
+         
           </div>
         </div>
 
@@ -32,4 +31,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default CreateOrder_Logistic;

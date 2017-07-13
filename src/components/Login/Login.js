@@ -80,15 +80,15 @@ class Login extends Component {
                         //   console.log(response.data)
                            this.setState({ Basicprofile: response.data[0].Firstname })
                         //    console.log(this.state.Basicprofile[0].Firstname)
-                        //    console.log(this.state.data.token)
+                           console.log(this.state.Basicprofile)
                         });
                         
 
 
             }).then(()=> {
-                       
+                       localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
                         localStorage.setItem('Token', JSON.stringify(this.state.data.token));
-                        localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
+                        
 
 
             })

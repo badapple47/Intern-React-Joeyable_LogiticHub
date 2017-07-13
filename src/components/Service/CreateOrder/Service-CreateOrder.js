@@ -2,12 +2,78 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './Service-CreateOrder.css';
 import Service_CreatOrder_Modal from './Service-CreateOrder-Modal.js';
+import axios from 'axios';
 
 
 
 class Service_CreateOrder extends Component {
-  render() {
 
+ constructor(props) {
+    super(props);
+    this.state = {
+
+    getres: {},
+    token : JSON.parse(localStorage.getItem('Token')),
+    userinformation: {}
+
+    }
+    
+        this.handleChange = this.handleChange.bind(this)
+      this.postUserinformation = this.postUserinformation.bind(this)
+      //  this.togglepls = this.togglepls.bind(this)
+    //    this.getTracking = this.getTracking.bind(this)
+ }
+
+  handleChange(e) {
+
+        this.state.userinformation[e.target.name] = e.target.value
+        this.setState(
+            this.state
+
+        )
+    }
+
+    //  postUserinformation() {
+
+    //   //  this.setState({ trackingresult : window.location.pathname })
+      
+    //     // const { refreshData } = this.props
+    //     // this.togglepls()
+    // // console.log(this.state.token)
+    //     axios.post('http://localhost:3002/trackno', this.state.userinformation)
+    //         .then((res) => {
+    //  //           console.log(res)
+    //               this.setState({ getres: res.data })
+    //         }).then(() => {
+    //             // refreshData()
+    //               // {this.bringfirstdata()}
+    //               // console.log(this.state.token)
+          
+    //         })
+    // }
+postUserinformation() {
+    axios({
+                        
+                          method:'post',
+                          url:'http://localhost:3002/trackno',
+                          data: {
+                            userinfo: this.state.userinformation
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                        //   console.log(response.data)
+                          
+                        //    console.log(this.state.Basicprofile[0].Firstname)
+                          //  console.log(this.state.Basicprofile)
+                        });
+}
+
+
+
+  render() {
+    console.log(this.state.userinformation)
+    console.log(this.state.token)
     return (
 
       <div >
@@ -33,12 +99,12 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Weight:</label>
                                             <div className="col-sm-8">
-                                                  <select className="form-control gramform">
+                                                  <select className="form-control gramform" name="weight" value={this.state.userinformation.name} onChange={this.handleChange}>
                                                     <option>None</option>
                                                     <option>100-250 gram</option>
-                                                    <option>250-500 gram</option>
-                                                    <option>500-750 gram</option>
-                                                    <option>750-1000 gram</option>
+                                                    <option>251-500 gram</option>
+                                                    <option>501-750 gram</option>
+                                                    <option>751-1000 gram</option>
                                                   </select>
                                             </div>
                                           </div>
@@ -46,7 +112,7 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Box Size:</label>
                                             <div className="col-sm-8"> 
-                                                <select className="form-control gramform">
+                                                <select className="form-control gramform" name="boxsize" value={this.state.userinformation.name} onChange={this.handleChange}>
                                                   <option>None</option>
                                                   <option>BOX 1 (10X10X10 cm)</option>
                                                   <option>BOX 2 (20X20X20 cm)</option>
@@ -73,7 +139,7 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Name:</label>
                                             <div className="col-sm-6">
-                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="email" />
+                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="sendername" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                             <div className="col-sm-3">
                                                   <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseSeAddressmodal">Choose Address</button>
@@ -85,7 +151,7 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
                                             <div className="col-sm-8"> 
-                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="address" />
+                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="senderaddress" value={this.state.userinformation.name} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 
@@ -106,7 +172,7 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Name:</label>
                                             <div className="col-sm-6">
-                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="email" />
+                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="recievname" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                             <div className="col-sm-3">
                                                   <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" >Choose Address</button>
@@ -122,7 +188,7 @@ class Service_CreateOrder extends Component {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
                                             <div className="col-sm-8"> 
-                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="address" />
+                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="recievaddress" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                           </div>
 
@@ -136,7 +202,8 @@ class Service_CreateOrder extends Component {
                           <div className = "container">
                             <center>
                            <button type="button" className="btn btn-default " id="CreateOrder-SavenAddmore-buttton">Save and Add more</button>
-                           <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/service-booking">Save</a>
+                           <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/service-createorder-logistic" onClick={this.postUserinformation}>Save</a>
+                         
 
                           
                            </center>
