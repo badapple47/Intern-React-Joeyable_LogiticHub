@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Service_Dashboard from './Dashboard/Service-Dashboard';
 import Service_Sidebar from './Service-Sidebar';
 import { Route } from 'react-router-dom';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 class Dashboard extends Component {
@@ -10,6 +12,7 @@ class Dashboard extends Component {
     return (
 
       <div >
+        <Header/>
         <div className="row profile">
           <div className="col-md-3" >
             <Service_Sidebar />
@@ -23,6 +26,7 @@ class Dashboard extends Component {
           
           </div>
         </div>
+        <Footer/>
 
 
       </div>

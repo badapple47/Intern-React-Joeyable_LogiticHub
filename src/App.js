@@ -5,9 +5,10 @@ import logo from './logo.svg';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import Register from './components/Register/Register';
-import Promotion from './components/Promotion/Promotion';
+import Home_Route from './components/Home';
+import Home_Route2 from './components/Home2';
+import Register_Route from './components/Register';
+import Promotion_Route from './components/Promotion';
 import Login from './components/Login/Login';
 import Dashboard from './components/Service/Dashboard';
 import Tracking from './components/Service/Tracking';
@@ -25,27 +26,8 @@ import {
 } from 'react-router-dom'
 
 
-function loggedIn() {
-  return false;
-}
 
-function requireAuth(nextState, replace) {
-  if (!loggedIn()) {
-    replace({
-      pathname: '/Register'
-    })
-  }
-}
 
-// function routes() {
-//   return (
-//     <Route path="/" component={App}>
-//       <Route path="login" component={Login} />
-//       <Route path="logout" component={Logout} />
-//       <Route path="checkout" component={Checkout} onEnter={requireAuth} />
-//     </Route>
-//   );
-// }
 
 
 class App extends Component {
@@ -60,20 +42,16 @@ class App extends Component {
     return (
 
       <div >
-      <Header/>
       
-      <Route exact = {true} path = "/" component = {Home} />
 
-      {/*<Route exact path="/Service" render={() => (
-      loggedIn ? (
-        <Redirect to="/Service"/>
-      ) : (
-        <Register/>
-      )
-    )}/>*/}
       
-      <Route path="/Register" component={Register} />
-      <Route path="/promotion" component={Promotion} />
+      
+      <Route exact = {true} path = "/" component = {Home_Route} />
+
+
+      <Route path="/Home-Member" component={Home_Route2} />
+      <Route path="/Register" component={Register_Route} />
+      <Route path="/promotion" component={Promotion_Route} />
       <Route path="/Service" component={Dashboard}  />
       <Route path="/Service-Tracking" component={Tracking} />
       <Route path="/Service-CreateOrder" component={CreateOrder} />
@@ -82,16 +60,13 @@ class App extends Component {
       <Route path="/Service-Booking-Checkinfo" component={Booking_Checkinfo} />
       <Route path="/Service-CreateOrder-Logistic" component={CreateOrder_Logistic} />
       <Route path="/Login" component={Login} />
-      
-      <Footer/>
 
-      {/*<Header/>
-       <Route path="/" component={Home}>
-      <Route path="/promotion" component={Promotion} />
-      <Route path="/Register" component={Register} />
-      <Route path="/Service" component={Dashboard} onEnter={requireAuth} />
-    </Route>
-    <Footer/>*/}
+      <Route path="/Service" component={Dashboard} />
+
+      
+      
+
+ 
 
 
       </div>

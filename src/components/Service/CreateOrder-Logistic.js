@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import Service_Sidebar from './Service-Sidebar';
 
 import Service_CreateOrder_Logistic from './CreateOrder/Service-CreateOrder-Logistic';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 class CreateOrder_Logistic extends Component {
@@ -10,6 +12,7 @@ class CreateOrder_Logistic extends Component {
     return (
 
       <div >
+        <Header/>
         <div className="row profile">
           <div className="col-md-3" >
             <Service_Sidebar />
@@ -22,7 +25,7 @@ class CreateOrder_Logistic extends Component {
          
           </div>
         </div>
-
+        <Footer/>
 
       </div>
 

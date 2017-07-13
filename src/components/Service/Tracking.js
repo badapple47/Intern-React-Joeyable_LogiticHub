@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Service_Tracking from './Tracking/Service-Tracking';
 import Service_Sidebar from './Service-Sidebar';
 import { Route } from 'react-router-dom';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 
@@ -10,6 +12,8 @@ class Tracking extends Component {
     return (
 
       <div >
+        <Header/>
+        
         <div className="row profile">
           <div className="col-md-3" >
             <Service_Sidebar />
@@ -22,7 +26,7 @@ class Tracking extends Component {
           </div>
         </div>
 
-
+        <Footer/>
       </div>
 
 

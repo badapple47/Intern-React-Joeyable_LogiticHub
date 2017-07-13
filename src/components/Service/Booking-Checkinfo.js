@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import Service_Sidebar from './Service-Sidebar';
 
 import Service_Booking_Checkinfo from './Booking/Service-Booking-Checkinfo';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 class Booking_Checkinfo extends Component {
@@ -10,6 +12,7 @@ class Booking_Checkinfo extends Component {
     return (
 
       <div >
+        <Header/>
         <div className="row profile">
           <div className="col-md-3" >
             <Service_Sidebar />
@@ -20,7 +23,7 @@ class Booking_Checkinfo extends Component {
          
           </div>
         </div>
-
+        <Footer/>
 
       </div>
 

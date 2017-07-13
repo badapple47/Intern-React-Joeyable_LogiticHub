@@ -24,12 +24,14 @@ class Login extends Component {
       datafake : ["datanotfound"],
       token : localStorage.getItem('Token'),
       isModalOpen : true,
-      Basicprofile : []
+      Basicprofile : [],
+      isSignin : "success"
 
     }
         this.handleChange = this.handleChange.bind(this)
       this.postTracking = this.postTracking.bind(this)
        this.togglepls = this.togglepls.bind(this)
+        this.checkSignin = this.checkSignin.bind(this)
     //    this.getTracking = this.getTracking.bind(this)
  }
 
@@ -49,6 +51,17 @@ class Login extends Component {
         )
     }
 
+        checkSignin() {
+        
+        if ( this.state.isSignin === 'success')
+        {
+            window.location="http://localhost:3000/service";
+        }
+        else if ( this.state.isSignin === 'error'){
+             window.location="http://localhost:3000/register"
+            // this.setState({ isSignin: 'incorrect username or password'})
+        }
+    }
       
 
       postTracking() {
@@ -81,6 +94,7 @@ class Login extends Component {
                            this.setState({ Basicprofile: response.data[0].Firstname })
                         //    console.log(this.state.Basicprofile[0].Firstname)
                            console.log(this.state.Basicprofile)
+                           this.checkSignin()
                         });
                         
 
