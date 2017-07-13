@@ -16,7 +16,7 @@ class Service_Dashboard_Profile extends Component {
     //   datapost: {},
     //   datafake : ["datanotfound"],
        token : localStorage.getItem('Token'),
-       Basicprofile : localStorage.getItem('Basicprofile')
+      
     //   isModalOpen : true
 
     }
@@ -28,6 +28,13 @@ class Service_Dashboard_Profile extends Component {
  }
 
     render(){
+
+        // alert(this.state.token);
+         if (typeof this.state.token !== 'undefined' && this.state.token !== null) {
+    
+         }else{
+            window.location="http://localhost:3000/";
+         }
 
     return (
 
@@ -52,7 +59,7 @@ class Service_Dashboard_Profile extends Component {
 
                                             <p> {this.state.Basicprofile} </p>
                                             <p> J Point :  </p>
-                                            {this.state.token}
+                                            
                                             <a type="button" className="btn purple-background white" href="/service-createorder" >Create Order</a>
                                            
                                         </center>

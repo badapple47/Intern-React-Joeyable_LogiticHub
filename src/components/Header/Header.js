@@ -31,7 +31,7 @@ const Header = () =>{
                                         <div id="header-top">
 
                                             <ul className="nav nav-tabs" >
-                                      <li role="presentation" className="active" data-toggle="modal" data-target="#login-modal" ><Link to="/">LOGIN</Link></li>
+                                      <li role="presentation" className="active" data-toggle="modal" data-target="#login-modal" ><a>LOGIN</a></li>
                                       <li role="presentation"><a href="/register">REGISTER</a></li>
                                       
                                       <li role="presentation"><a href="#">LANGUAGE</a></li>

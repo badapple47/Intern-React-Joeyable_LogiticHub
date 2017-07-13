@@ -1,7 +1,10 @@
 #login-modal
 {
     margin-top: 100px;
+     /*z-index: auto;*/
+    
 }
+
 #login-button
 {   
     width: 330px;

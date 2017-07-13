@@ -33,7 +33,7 @@ class Service_Tracking extends Component {
       isToggleOn: false,
       data:[],
       datapost: {},
-      trackingresult:{trackno: "test"},
+      trackingresult:{trackno: "-"},
       token : "123132313"
      
     }
@@ -172,7 +172,7 @@ class Service_Tracking extends Component {
 
 
               <h1> Tracking Number :  {this.state.trackingresult.trackno}</h1>
-              {window.location.pathname}
+            
               
 
 

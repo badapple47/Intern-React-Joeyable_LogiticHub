@@ -1,4 +1,4 @@
-import React  from 'react';
+import React , {Component } from 'react';
 import './Header.css';
 import LogoImg from '../../pic/logotop.png';
 import Login from '../Login/Login';
@@ -6,7 +6,47 @@ import  { Link } from 'react-router-dom';
 
 
 
-const Header2 = () =>{
+
+
+class Header2 extends Component {
+
+ constructor(props) {
+    super(props);
+    this.state = {
+
+
+      // isToggleOn: false,
+      // data: ["test"],
+      // datapost: {},
+      // datafake : ["datanotfound"],
+      token : localStorage.getItem('Token'),
+      // isModalOpen : true,
+      // Basicprofile : [],
+      // isSignin : "success"
+
+    }
+    //  this.handleChange = this.handleChange.bind(this)
+    //   this.postTracking = this.postTracking.bind(this)
+    //    this.togglepls = this.togglepls.bind(this)
+    //     this.checkSignin = this.checkSignin.bind(this)
+    //    this.getTracking = this.getTracking.bind(this)
+    this.Logout = this.Logout.bind(this)
+ }
+
+
+        Logout() {
+
+          localStorage.clear();
+        
+       
+            window.location="http://localhost:3000/";
+       
+       
+    }
+
+
+render(){
+
 
     return (
 
@@ -31,20 +71,19 @@ const Header2 = () =>{
                                         <div id="header-top">
 
                                             <ul className="nav nav-tabs" >
-                                      <li role="presentation" className="active" data-toggle="modal" data-target="#login-modal" ><Link to="/">LOGIN</Link></li>
-                                      <li role="presentation"><a href="/register">REGISTER</a></li>
-                                      
-                                      <li role="presentation"><a href="#">LANGUAGE</a></li>
 
-
-                                      <form className="navbar-form " role="search" id="search">
-                                        <div className="form-group">
-                                          <input type="text" className="form-control" placeholder="Search"/>
-                                        </div>
-                                        <button type="submit" className="btn btn-default">Submit</button>
-                                      </form>
-
-
+                                     <div className="pull-right">
+                <ul className="nav pull-right">
+                    <li className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">Welcome, User <b className="caret"></b></a>
+                        <ul className="dropdown-menu">
+                            <li><a href="/user/preferences"><i className="icon-cog"></i> Preferences</a></li>
+                            <li><a href="/help/support"><i className="icon-envelope"></i> Contact Support</a></li>
+                            <li className="divider"></li>
+                            <li onClick={this.Logout}><a><i className="icon-off"> </i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+              </div>
                                     </ul>
 
                                    
@@ -90,7 +129,7 @@ const Header2 = () =>{
                                         <div id="header-bottom">
                                         <ul className="nav nav-pills ">
                                           <li role="presentation" className="active">
-                                            <a href="/">HOME</a>
+                                            <a href="/home-member">HOME</a>
 
                                           </li>
                                           <li role="presentation">
@@ -116,8 +155,9 @@ const Header2 = () =>{
                                     </nav>
                                     </div>
 
+  
     );
   };
-
+};
 
 export default Header2;

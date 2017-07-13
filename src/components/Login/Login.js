@@ -53,11 +53,15 @@ class Login extends Component {
 
         checkSignin() {
         
-        if ( this.state.isSignin === 'success')
+        if ( this.state.isSignin === 'Enjoy your token!')
         {
-            window.location="http://localhost:3000/service";
+            window.location="http://localhost:3000/Home-Member";
         }
-        else if ( this.state.isSignin === 'error'){
+        else if ( this.state.isSignin === 'Authentication failed. Wrong password.'){
+             window.location="http://localhost:3000/register"
+            // this.setState({ isSignin: 'incorrect username or password'})
+        }
+         else if ( this.state.isSignin === 'Authentication failed. User not found.'){
              window.location="http://localhost:3000/register"
             // this.setState({ isSignin: 'incorrect username or password'})
         }
@@ -65,17 +69,19 @@ class Login extends Component {
       
 
       postTracking() {
-        //   console.log("postnaja")
-        //   console.log(this.state.datapost)
+   
         const { refreshData } = this.props
         this.togglepls()
-    //    console.log(this.state.isToggleOn)
+
         axios.post('http://localhost:3002/login', this.state.datapost)
             .then((res) => {
-            //    console.log(res)
+
+                //  console.log(res.data)
                this.setState({ data: res.data })
+               this.setState({ isSignin: res.data.message })
+              
             }).then(() => {
-                console.log(this.state.data)
+                // console.log(this.state.data)
                 
           
             }).then(()=> {
@@ -90,10 +96,10 @@ class Login extends Component {
                             headers: { Authorization: this.state.data.token }
                         })
                           .then((response)=> {
-                        //   console.log(response.data)
-                           this.setState({ Basicprofile: response.data[0].Firstname })
-                        //    console.log(this.state.Basicprofile[0].Firstname)
-                           console.log(this.state.Basicprofile)
+                           console.log(response.data)
+                        //    this.setState({ Basicprofile: response.data[0].Firstname })
+                        
+                        //    console.log(this.state.Basicprofile)
                            this.checkSignin()
                         });
                         
@@ -158,22 +164,22 @@ class Login extends Component {
     // }
 
     
-     let userMessage;
-    if (this.state.token !== 'undefined' && this.state.token !== null) {
-      userMessage = (
-        <span>
+    //  let userMessage;
+    // if (this.state.token !== 'undefined' && this.state.token !== null) {
+    //   userMessage = (
+    //     <span>
             
-          <h2>{ `Welcome Back` }</h2>
-           {/*<Redirect to="/Service"/>*/}
-        </span>
-      )
-    } else {
-      userMessage = (
-          <center>
-        <p>Please sign in to see service page</p>
-        </center>
-      )
-    }
+    //       <h2>{ `Welcome Back` }</h2>
+    //        {/*<Redirect to="/Service"/>*/}
+    //     </span>
+    //   )
+    // } else {
+    //   userMessage = (
+    //       <center>
+    //     <p>Please sign in to see service page</p>
+    //     </center>
+    //   )
+    // }
 
     return (
 
@@ -230,15 +236,14 @@ class Login extends Component {
                                         <center><h4>OR</h4></center>
                                         <input className="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook" />
                                        
-                                         {/*<p> user token : {this.state.data} </p>*/}
-                                         {/*<span className="button"  data-dismiss="modal" aria-label="Close">cancel</span>*/}
+                                         
 
 
 
                                         
                                         
                                         
-                                        {userMessage}
+                                        {/*{userMessage}*/}
                                         
                                         
                                        

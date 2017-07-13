@@ -172,7 +172,7 @@ postUserinformation() {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Name:</label>
                                             <div className="col-sm-6">
-                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="recievname" value={this.state.userinformation.name} onChange={this.handleChange} />
+                                                  <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="receivename" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                             <div className="col-sm-3">
                                                   <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" >Choose Address</button>
@@ -188,7 +188,7 @@ postUserinformation() {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
                                             <div className="col-sm-8"> 
-                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="recievaddress" value={this.state.userinformation.name} onChange={this.handleChange} />
+                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="receiveaddress" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                           </div>
 
