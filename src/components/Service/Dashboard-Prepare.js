@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Service_Sidebar from './Service-Sidebar';
-import Service_Booking_Dropoff from './Booking/Service-Booking-Dropoff';
+
+import Service_Dashboard_Prepare from './Dashboard/Service-Dashboard-Prepare';
 import Header2 from '../Header/Header2';
 import Footer from '../Footer/Footer';
 
 
-class Booking_Dropoff extends Component {
+class Dashboard_Prepare extends Component {
   render() {
     return (
 
@@ -18,14 +19,12 @@ class Booking_Dropoff extends Component {
           </div>
 
           <div className="col-md-9" >
-            {/*<Service_Booking>*/}
-            <Service_Booking_Dropoff/>
-
+            <Service_Dashboard_Prepare />    
          
           </div>
         </div>
-
         <Footer/>
+
       </div>
 
 
@@ -33,4 +32,4 @@ class Booking_Dropoff extends Component {
   }
 }
 
-export default Booking_Dropoff;
+export default Dashboard_Prepare;

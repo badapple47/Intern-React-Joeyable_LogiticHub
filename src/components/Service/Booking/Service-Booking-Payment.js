@@ -4,6 +4,20 @@ import './Service-Booking-Dropoff.css';
 
 
 class Service_Booking_Payment extends Component {
+
+    componentWillMount() {
+        const script = document.createElement("script");
+
+        script.src = "https://cdn.omise.co/card.js";
+        script.async = true;
+
+       
+
+        document.body.appendChild(script);
+    }
+
+
+
     render() {
         return (
 
@@ -70,6 +84,27 @@ class Service_Booking_Payment extends Component {
                     </div>
 
                     <hr/>
+
+
+<center>
+    <form name="checkoutForm" method="POST" action="http://localhost:3002/omise/token"> 
+       <input type="hidden" name="description" value="Product order ฿100.25" />    
+    <script type="text/javascript"
+      data-key="pkey_test_58owl9vixkpv13fyhdv"
+      data-frame-label="Joeyable Logistic Hub"
+      data-button-label="Pay now"
+      data-submit-label="Submit"
+      data-location="yes"
+      data-amount="12800"
+      data-currency="thb"
+      
+      >
+    </script>
+
+      </form>  
+
+
+      </center>
                        
 
 
