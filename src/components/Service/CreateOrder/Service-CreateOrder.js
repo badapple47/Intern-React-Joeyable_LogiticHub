@@ -11,13 +11,13 @@ class Service_CreateOrder extends Component {
  constructor(props) {
     super(props);
     this.state = {
-
+    data:[],
     getres: {},
     token : JSON.parse(localStorage.getItem('Token')),
     userinformation: {}
 
     }
-    
+
         this.handleChange = this.handleChange.bind(this)
       this.postUserinformation = this.postUserinformation.bind(this)
       //  this.togglepls = this.togglepls.bind(this)
@@ -36,7 +36,7 @@ class Service_CreateOrder extends Component {
     //  postUserinformation() {
 
     //   //  this.setState({ trackingresult : window.location.pathname })
-      
+
     //     // const { refreshData } = this.props
     //     // this.togglepls()
     // // console.log(this.state.token)
@@ -48,24 +48,28 @@ class Service_CreateOrder extends Component {
     //             // refreshData()
     //               // {this.bringfirstdata()}
     //               // console.log(this.state.token)
-          
+
     //         })
     // }
 postUserinformation() {
     axios({
-                        
+
                           method:'post',
-                          url:'http://localhost:3002/trackno',
+                          url:'http://localhost:3002/order',
                           data: {
                             userinfo: this.state.userinformation
                           },
                             headers: { Authorization: this.state.token }
                         })
                           .then((response)=> {
-                        //   console.log(response.data)
-                          
+                          this.setState ({ data: response.data })
+                          localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
+                          localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
                         //    console.log(this.state.Basicprofile[0].Firstname)
                           //  console.log(this.state.Basicprofile)
+                        })
+                          .then(()=> {
+                          console.log(this.state.data);
                         });
 }
 
@@ -73,7 +77,7 @@ postUserinformation() {
 
   render() {
     console.log(this.state.userinformation)
-    console.log(this.state.token)
+    // console.log(this.state.token)
     return (
 
       <div >
@@ -81,15 +85,15 @@ postUserinformation() {
 
 
                  <div className="row" id="service-dashboard-row">
-                
+
                     <div className="col-md-11">
-                
+
                 <h1>Create Order <small>Fill information in the box</small></h1>
-                
+
 
                  <button type="button" className="btn purple-background white glyphicon glyphicon-folder-open " id="service-createorder-importfilebut" aria-hidden="true">   ImportOrder</button>
-               
-                 
+
+
                  <div className="CreateOrder-Component1">
                  <h3 id="Service-CreateOrder-miniheader">Parcel</h3>
                  <hr/>
@@ -111,7 +115,7 @@ postUserinformation() {
 
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Box Size:</label>
-                                            <div className="col-sm-8"> 
+                                            <div className="col-sm-8">
                                                 <select className="form-control gramform" name="boxsize" value={this.state.userinformation.name} onChange={this.handleChange}>
                                                   <option>None</option>
                                                   <option>BOX 1 (10X10X10 cm)</option>
@@ -123,18 +127,18 @@ postUserinformation() {
                                             </div>
                                           </div>
 
-                                       
+
                             </form>
                   </div>
-                            
-                           
+
+
                   </div>
-                            
+
                           <div className="CreateOrder-Component1">
                                <h3 id="Service-CreateOrder-miniheader">Sender</h3>
                             <hr/>
 
-                            
+
                           <form className="form-horizontal" id="register-form">
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Name:</label>
@@ -150,24 +154,24 @@ postUserinformation() {
 
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
-                                            <div className="col-sm-8"> 
+                                            <div className="col-sm-8">
                                                 <input type="Email" className="form-control" id="createorder-address" placeholder="" name="senderaddress" value={this.state.userinformation.name} onChange={this.handleChange}/>
                                             </div>
                                           </div>
 
-                                       
+
                             </form>
-                          
+
 
                            </div>
-               
+
 
 
                           <div className="CreateOrder-Component3">
                                <h3 id="Service-CreateOrder-miniheader">Reciever</h3>
                             <hr/>
 
-                            
+
                           <form className="form-horizontal" id="register-form">
                                           <div className="form-group">
                                             <label className="control-label col-sm-3 " for="email">Name:</label>
@@ -177,7 +181,7 @@ postUserinformation() {
                                             <div className="col-sm-3">
                                                   <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" >Choose Address</button>
 
-                                                    
+
 
 
                                             </div>
@@ -187,14 +191,14 @@ postUserinformation() {
 
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
-                                            <div className="col-sm-8"> 
+                                            <div className="col-sm-8">
                                                 <input type="Email" className="form-control" id="createorder-address" placeholder="" name="receiveaddress" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                           </div>
 
-                                       
+
                             </form>
-                          
+
 
                            </div>
 
@@ -202,20 +206,20 @@ postUserinformation() {
                           <div className = "container">
                             <center>
                            <button type="button" className="btn btn-default " id="CreateOrder-SavenAddmore-buttton">Save and Add more</button>
-                           <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/service-createorder-logistic" onClick={this.postUserinformation}>Save</a>
-                         
+                            <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/Service-CreateOrder-Logistic"  onClick={this.postUserinformation}>Save</a> 
 
-                          
+
+
                            </center>
                           </div>
-               
-               
+
+
                 </div>
-                
+
                 </div>
 
 
-                                                    
+
 
       </div>
 

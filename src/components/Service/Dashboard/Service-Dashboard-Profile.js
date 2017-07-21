@@ -15,7 +15,11 @@ class Service_Dashboard_Profile extends Component {
     //   data: ["test"],
     //   datapost: {},
     //   datafake : ["datanotfound"],
-       token : localStorage.getItem('Token'),
+        token : localStorage.getItem('Token'),
+       Firstname : JSON.parse(localStorage.getItem('Firstname')),
+       Lastname : JSON.parse(localStorage.getItem('Lastname')),
+       tel : JSON.parse(localStorage.getItem('tel')),
+       Email : JSON.parse(localStorage.getItem('Email')),
       
     //   isModalOpen : true
 
@@ -57,7 +61,7 @@ class Service_Dashboard_Profile extends Component {
                                                 <img src={LogoCat} className="img-responsive" alt="" />
                                             </div>
 
-                                            <p> {this.state.Basicprofile} </p>
+                                            <p> {this.state.Firstname} {this.state.Lastname} </p>
                                             <p> J Point :  </p>
                                             
                                             <a type="button" className="btn purple-background white" href="/service-createorder" >Create Order</a>
@@ -82,11 +86,11 @@ class Service_Dashboard_Profile extends Component {
                                         <form className="form-horizontal" id="service-dashboard-aboutform">
                                             <div className="form-group" >
 
-                                                <p>First Name :</p>
-                                                <p>Last Name :</p>
-                                                <p>E-mail :</p>
-                                                <p>Tel :</p>
-                                                <p>Address :</p>
+                                                <p>First Name : {this.state.Firstname}</p>
+                                                <p>Last Name : {this.state.Lastname}</p>
+                                                <p>E-mail : {this.state.Email}</p>
+                                                <p>Tel : {this.state.tel}</p>
+                                                <p>Address : -</p>
 
                                             </div>
                                         </form>

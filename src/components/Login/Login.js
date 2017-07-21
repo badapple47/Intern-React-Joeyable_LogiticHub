@@ -96,18 +96,25 @@ class Login extends Component {
                             headers: { Authorization: this.state.data.token }
                         })
                           .then((response)=> {
+                              
                            console.log(response.data)
-                       
-                        
-                     
-                           this.checkSignin()
+                           this.setState({ Basicprofile: response.data })
+
+                           console.log(this.state.Basicprofile)
+                    
+                        localStorage.setItem('Token', JSON.stringify(this.state.data.token));
+                        localStorage.setItem('Firstname', JSON.stringify(this.state.Basicprofile.firstname));
+                        localStorage.setItem('Lastname', JSON.stringify(this.state.Basicprofile.lastname));
+                        localStorage.setItem('tel', JSON.stringify(this.state.Basicprofile.tel));
+                        localStorage.setItem('Email', JSON.stringify(this.state.Basicprofile.email));
+                        this.checkSignin()
                         });
                         
 
 
             }).then(()=> {
-                       localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
-                        localStorage.setItem('Token', JSON.stringify(this.state.data.token));
+                    //    localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
+                    //     localStorage.setItem('Token', JSON.stringify(this.state.data.token));
                         
 
 

@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 // var token = "1231313"
 // axios({
- 
+
 //   method:'post',
 //   url:'http://localhost:3002/trackno',
 //    data: {
@@ -35,18 +35,18 @@ class Service_Tracking extends Component {
       datapost: {},
       trackingresult:{trackno: "-"},
       token : "123132313"
-     
+
     }
 
-    
-             
+
+
       this.handleChange = this.handleChange.bind(this)
       this.postTracking = this.postTracking.bind(this)
       this.togglepls = this.togglepls.bind(this);
 
   }
 
-   
+
     handleChange(e) {
 
         this.state.datapost[e.target.name] = e.target.value
@@ -56,7 +56,7 @@ class Service_Tracking extends Component {
 
         )
     }
-  
+
 
 
 
@@ -65,7 +65,7 @@ class Service_Tracking extends Component {
     postTracking() {
 
       //  this.setState({ trackingresult : window.location.pathname })
-      
+
         const { refreshData } = this.props
         this.togglepls()
     console.log(this.state.token)
@@ -77,13 +77,15 @@ class Service_Tracking extends Component {
                 // refreshData()
                   {this.bringfirstdata()}
                   console.log(this.state.token)
-          
+                  // console.log(this.state.data)
+                  // console.log(this.state.data.map((each) =>(each.Barcode)))
+
             })
     }
 
 
 
-    
+
 
 // getTracking() {
 //     axios.get('http://localhost:3002/api1')
@@ -94,12 +96,12 @@ class Service_Tracking extends Component {
 //           this.setState({ data: response.data })
 //         }else{
 //  //       console.log("not response")
-//  //       console.log(response.data[0]); 
-//         this.setState({ data: response.data })         
+//  //       console.log(response.data[0]);
+//         this.setState({ data: response.data })
 //         }
 //       }).then(() => {
 //                 // console.log(this.state.data)
-              
+
 //       })
 //   }
 
@@ -113,7 +115,7 @@ class Service_Tracking extends Component {
   bringfirstdata(){
    this.setState({
      trackingresult : this.state.data[0]
-     
+
 
    })
     // console.log(this.state.trackingresult.trackno)
@@ -135,7 +137,7 @@ class Service_Tracking extends Component {
     return (
       <div className="Service_Tracking">
 
-        
+
 
 
 
@@ -151,8 +153,8 @@ class Service_Tracking extends Component {
           {/*<form action="Service-Tracking" method="post">*/}
             <div className="input-group" id="service-tracking-search">
               <input type="text" className="form-control" placeholder="Input tracking number here..." name="trackno" value={this.state.datapost.trackno} onChange={this.handleChange}/>
-              
-              
+
+
               <span className="input-group-btn">
                 <button className="btn btn-default" type="Submit" onClick={this.postTracking} >post</button>
                 {/*<button className="btn btn-default" type="Submit" onClick={this.getTracking}>get</button>*/}
@@ -171,9 +173,9 @@ class Service_Tracking extends Component {
             <div className="panel-body">
 
 
-              <h1> Tracking Number :  {this.state.trackingresult.trackno}</h1>
-            
-              
+              <h1> Tracking Number :  {this.state.trackingresult.Barcode}</h1>
+
+
 
 
                {/*Wizard Progressbar ja*/}
@@ -214,21 +216,21 @@ class Service_Tracking extends Component {
                {/*<div id="service-tracking-detail1">
               {this.state.data.map((each) =>(
                 <div>
-                <p> Tracking Number : {each.trackno}</p>
-                <p> Export : {each.updated_at}</p>
-                <p> Delivery : {each.message}</p>
-                <p> To : {each.location}</p> 
-                </div>           
+                <p> Tracking Number : {each.Barcode}</p>
+                <p> Export : {each.DateTime}</p>
+                <p> Delivery : {each.StatusName}</p>
+                <p> To : {each.Location}</p>
+                </div>
               ))}
               </div>*/}
 
-                           
+
 
 
                   <div className="container" id="service-tracking-table">
 
                       {/*https://bootsnipp.com/snippets/featured/mobile-friendly-api-documentation*/}
-       
+
                       <div className="method">
                           <div className="row margin-0 list-header hidden-sm hidden-xs">
                               <div className="col-md-3"><div className="header">Date</div></div>
@@ -238,18 +240,18 @@ class Service_Tracking extends Component {
                           </div>
                         </div>
                       {this.state.data.map((each) =>(
-                      
 
-                      
 
-                          
+
+
+
                         <div className="method">
                           <div className="row margin-0">
 
                               <div className="col-md-3">
                                   <div className="cell">
                                       <div className="propertyname">
-                                          {each.checkpoint_time}  <span className="mobile-isrequired"></span>
+                                          {each.DateTime}  <span className="mobile-isrequired"></span>
                                       </div>
                                   </div>
                               </div>
@@ -257,7 +259,7 @@ class Service_Tracking extends Component {
                               <div className="col-md-3">
                                   <div className="cell">
                                       <div className="type">
-                                        {each.location}
+                                        {each.Location}
                                       </div>
                                   </div>
                               </div>
@@ -265,7 +267,7 @@ class Service_Tracking extends Component {
                               <div className="col-md-3">
                                   <div className="cell">
                                       <div className="isrequired">
-                                           {each.message}
+                                           {each.StatusName}
                                       </div>
                                   </div>
                               </div>
@@ -273,13 +275,13 @@ class Service_Tracking extends Component {
                               <div className="col-md-3">
                                   <div className="cell">
                                       <div className="description">
-                                           -
+                                           {each.Description}
                                       </div>
                                   </div>
                               </div>
                           </div>
 
-                        
+
                     </div>
                       ))}
                   </div>

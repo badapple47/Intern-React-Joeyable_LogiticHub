@@ -20,6 +20,7 @@ class Header2 extends Component {
       // datapost: {},
       // datafake : ["datanotfound"],
       token: localStorage.getItem('Token'),
+      user : JSON.parse(localStorage.getItem('Firstname')),
       // isModalOpen : true,
       // Basicprofile : [],
       // isSignin : "success"
@@ -75,7 +76,7 @@ class Header2 extends Component {
                   <div className="pull-right">
                     <ul className="nav pull-right">
                       
-                      <li className="dropdown"><a href="#" id="membersys" className="dropdown-toggle" data-toggle="dropdown" className="foractive">Welcome, User <b className="caret"></b></a>
+                      <li className="dropdown"><a href="#" id="membersys" className="dropdown-toggle" data-toggle="dropdown" className="foractive">Welcome, {this.state.user} <b className="caret"></b></a>
                         <ul className="dropdown-menu">
                           <li><a href="/user/preferences"><i className="icon-cog"></i> Preferences</a></li>
                           <li><a href="/help/support"><i className="icon-envelope"></i> Contact Support</a></li>

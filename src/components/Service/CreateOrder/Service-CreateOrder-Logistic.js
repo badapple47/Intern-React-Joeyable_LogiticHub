@@ -10,8 +10,11 @@ class Service_CreateOrder_Logistic extends Component {
     super(props);
     this.state = {
 
+    OrderId: 60,
     getres: {},
     token : JSON.parse(localStorage.getItem('Token')),
+    orderId : JSON.parse(localStorage.getItem('OrderId')),
+    priceLogistic : JSON.parse(localStorage.getItem('PriceLogistic')),
     selectedlogistic: {}
 
     }
@@ -19,8 +22,7 @@ class Service_CreateOrder_Logistic extends Component {
        
         this.handleClick = this.handleClick.bind(this)
       this.postUserinformation = this.postUserinformation.bind(this)
-      //  this.togglepls = this.togglepls.bind(this)
-    //    this.getTracking = this.getTracking.bind(this)
+
  }
 
 
@@ -34,19 +36,25 @@ class Service_CreateOrder_Logistic extends Component {
         )
     }
 
-   postUserinformation() {
+postUserinformation() {
     axios({
-                        
-                          method:'post',
-                          url:'http://localhost:3002/trackno',
+
+                          method:'put',
+                          url:`http://localhost:3002/logistic/${this.state.orderId}`,
+                          // url:`http://localhost:3002/logistic/`,
                           data: {
-                            userinfo: this.state.selectedlogistic
+                            userinfo: {
+                              orderId: this.state.orderId,
+                              priceLogistic: this.state.priceLogistic,
+                              logistic: this.state.selectedlogistic,
+
+                            },
                           },
                             headers: { Authorization: this.state.token }
                         })
                           .then((response)=> {
-                        //   console.log(response.data)
-                          
+                          console.log(response.data)
+
                         //    console.log(this.state.Basicprofile[0].Firstname)
                           //  console.log(this.state.Basicprofile)
                         });
@@ -96,7 +104,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.ThaipostEMS} Bath
                                       </div>
                                   </div>
                               </div>
@@ -104,7 +112,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Thailand Post(EMS)"} onClick={this.handleClick} >Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"ThaipostEMS"} onClick={this.handleClick} >Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -128,7 +136,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.Thaipost} Bath
                                       </div>
                                   </div>
                               </div>
@@ -136,7 +144,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Thailand Post(Register)"} onClick={this.handleClick}>Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Thaipost"} onClick={this.handleClick}>Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -157,7 +165,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.Kerry} Bath
                                       </div>
                                   </div>
                               </div>
@@ -165,7 +173,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Kerry Express"} onClick={this.handleClick}>Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Kerry"} onClick={this.handleClick}>Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -186,7 +194,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.dhl} Bath
                                       </div>
                                   </div>
                               </div>
@@ -194,7 +202,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"DHL Express"} onClick={this.handleClick}>Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"dhl"} onClick={this.handleClick}>Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -215,7 +223,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.FedEx} Bath
                                       </div>
                                   </div>
                               </div>
@@ -223,7 +231,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Fedex Express"} onClick={this.handleClick}>Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"FedEx"} onClick={this.handleClick}>Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -244,7 +252,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="type">
-                                      0 Bath
+                                      {this.state.priceLogistic.Sendit} Bath
                                       </div>
                                   </div>
                               </div>
@@ -252,7 +260,7 @@ class Service_CreateOrder_Logistic extends Component {
                               <div className="col-md-3">
                                   <div className="">
                                       <div className="isrequired">
-                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Sendit Express"} onClick={this.handleClick}>Choose</button>
+                                           <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseReAddressmodal" name="logistic" value={"Sendit"} onClick={this.handleClick}>Choose</button>
                                       </div>
                                   </div>
                               </div>
@@ -263,7 +271,7 @@ class Service_CreateOrder_Logistic extends Component {
                         
                     </div>
                     <a type="button" className="btn purple-background white "id="CLogistic-Back-button" href="/service-createorder" >Back</a>
-                     <a type="button" className="btn purple-background white "id="CLogistic-Save-button" href="/service-booking" onClick={this.postUserinformation}>Save</a>
+                     <a type="button" className="btn purple-background white "id="CLogistic-Save-button" href="/service-dashboard-paid" onClick={this.postUserinformation}>Save</a>
                      
                   </div>
 
