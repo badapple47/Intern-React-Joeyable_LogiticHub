@@ -73,7 +73,7 @@ class App extends Component {
         <Route path="/Service-CreateOrder-Logistic" component={CreateOrder_Logistic} />
         <Route path="/Login" component={Login} />
 
-        <Route path="/Service" component={Dashboard} />
+       
 
         
 

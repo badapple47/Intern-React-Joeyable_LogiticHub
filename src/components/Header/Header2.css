@@ -8,7 +8,9 @@
   background-color: #FFF ;
 }   */
 
-
+.nav-pills{
+    font-size : 18px;
+}
 
 #horizonline
 {
@@ -35,9 +37,6 @@
 padding-left : 85px;
 padding-top : 10px;
 } */
-.nav-pills{
-    font-size : 18px;
-}
 
 #header-topcss
 {
@@ -48,25 +47,33 @@ margin-bottom:-10px;
 
 }
 
-#header-bottom
+#header-bottom-2
 {
-margin-top:-10px;
+padding-top:10px;
   /* padding-bottom :10px; */
   padding-left : 20px;
   margin-bottom:-10px;
 
 }
 
+#membersys{
+    margin-top:20px;
+    
 
- #header-search{
-  margin-left:50px;
-  margin-top:-4px;
-  width:200px;
 }
-#header-search-button
+
+
+ #header-search2{
+  margin-left:540px;
+  margin-top:15px;
+  width:200px;
+  margin-bottom:10px;
+}
+#header-search-button2
 {
-   
-  margin-top:-4px;
+  
+  margin-top:15px;
+  margin-bottom:10px;
 } 
 
 

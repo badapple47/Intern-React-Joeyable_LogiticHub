@@ -1,8 +1,8 @@
-import React , {Component } from 'react';
-import './Header.css';
+import React, { Component } from 'react';
+import './Header2.css';
 import LogoImg from '../../pic/logotop.png';
 import Login from '../Login/Login';
-import  { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -10,7 +10,7 @@ import  { Link } from 'react-router-dom';
 
 class Header2 extends Component {
 
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
 
@@ -19,7 +19,7 @@ class Header2 extends Component {
       // data: ["test"],
       // datapost: {},
       // datafake : ["datanotfound"],
-      token : localStorage.getItem('Token'),
+      token: localStorage.getItem('Token'),
       // isModalOpen : true,
       // Basicprofile : [],
       // isSignin : "success"
@@ -31,131 +31,109 @@ class Header2 extends Component {
     //     this.checkSignin = this.checkSignin.bind(this)
     //    this.getTracking = this.getTracking.bind(this)
     this.Logout = this.Logout.bind(this)
- }
+  }
 
 
-        Logout() {
+  Logout() {
 
-          localStorage.clear();
-        
-       
-            window.location="http://localhost:3000/";
-       
-       
-    }
+    localStorage.clear();
 
 
-render(){
+    window.location = "http://localhost:3000/";
+
+
+  }
+
+
+  render() {
 
 
     return (
 
-      
-
-                                  <div className="row" >
-                                     <Login />
-                                    <nav className="navbar navbar-default navbar-fixed-top" id="header-background">
-                                      <div className="container-fluid">
-
-                                        <div className="col-md-4">
 
 
-                                                      <img alt="Brand" src={LogoImg} id="header-logo"/>
+      <div className="row" id="allaboutheader">
+        <Login />
+        <nav className="navbar navbar-default " id="header-background">
+          <div className="container-fluid">
+
+            <div className="col-md-3">
+
+
+              <img alt="Brand" src={LogoImg} id="header-logo" />
 
 
 
-                                        </div>
+            </div>
 
-                                        <div className="col-md-8">
+            <div className="col-md-9">
 
-                                        <div id="header-top">
+              <div id="header-top">
 
-                                            <ul className="nav nav-tabs" >
+                <ul className="nav nav-tabs" >
 
-                                     <div className="pull-right">
-                <ul className="nav pull-right">
-                    <li className="dropdown"><a href="#" className="dropdown-toggle" data-toggle="dropdown">Welcome, User <b className="caret"></b></a>
+                  <div className="pull-right">
+                    <ul className="nav pull-right">
+                      
+                      <li className="dropdown"><a href="#" id="membersys" className="dropdown-toggle" data-toggle="dropdown" className="foractive">Welcome, User <b className="caret"></b></a>
                         <ul className="dropdown-menu">
-                            <li><a href="/user/preferences"><i className="icon-cog"></i> Preferences</a></li>
-                            <li><a href="/help/support"><i className="icon-envelope"></i> Contact Support</a></li>
-                            <li className="divider"></li>
-                            <li onClick={this.Logout}><a><i className="icon-off"> </i> Logout</a></li>
+                          <li><a href="/user/preferences"><i className="icon-cog"></i> Preferences</a></li>
+                          <li><a href="/help/support"><i className="icon-envelope"></i> Contact Support</a></li>
+                          <li className="divider"></li>
+                          <li onClick={this.Logout}><a><i className="icon-off"> </i> Logout</a></li>
                         </ul>
-                    </li>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <form className="navbar-form " role="search" >
+                  <div className="form-group" >
+                    <input type="text" className="form-control" id="header-search2" placeholder="Tracking No." />
+                  </div>
+                   <button type="submit" className="btn btn-default" id="header-search-button2">Search</button> 
+                </form>
+
+
+                </ul>
+
+              </div>
+
+              <div id="header-bottom-2">
+                <ul className="nav nav-pills nav-justified">
+                  <li role="presentation" >
+                    <a href="/home-member" className="foractive">HOME</a>
+
+                  </li>
+                  <li role="presentation">
+                    <a href="/service" className="foractive">SERVICE</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="/promotion" className="foractive">PROMOTION</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#" className="foractive">PAYMENT</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#" className="foractive">ABOUT US</a>
+                  </li>
                 </ul>
               </div>
-                                    </ul>
 
-                                   
+              {/* <hr id="horizonline"/> */}
+
+            </div>
+
+            {/* <hr id="horizonline"/> */}
+
+          </div>
+
+          <hr id="horizonline" />
+        </nav>
 
 
-{/*modal*/}
-                            
-                                                    {/*<div className="container">
-  <h2>Modal Example</h2>
-
-  <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-
-  <div className="modal fade" id="myModal" role="dialog">
-    <div className="modal-dialog">
-    
- 
-      <div className="modal-content">
-        <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Modal Header</h4>
-        </div>
-        <div className="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
       </div>
-      
-    </div>
-  </div>
-  
-</div>*/}
 
 
-
-
-
-
-                                        </div>
-
-                                        <div id="header-bottom">
-                                        <ul className="nav nav-pills ">
-                                          <li role="presentation" className="active">
-                                            <a href="/home-member">HOME</a>
-
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="/service">SERVICE</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="/promotion">PROMOTION</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="#">PAYMENT</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="#">ABOUT US</a>
-                                          </li>
-                                        </ul>
-                                        </div>
-
-
-                                        </div>
-
-                                      </div>
-
-                                    </nav>
-                                    </div>
-
-  
     );
   };
 };

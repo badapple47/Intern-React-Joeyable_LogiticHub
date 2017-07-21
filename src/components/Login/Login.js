@@ -97,9 +97,9 @@ class Login extends Component {
                         })
                           .then((response)=> {
                            console.log(response.data)
-                        //    this.setState({ Basicprofile: response.data[0].Firstname })
+                       
                         
-                        //    console.log(this.state.Basicprofile)
+                     
                            this.checkSignin()
                         });
                         

@@ -1,123 +1,88 @@
-import React  from 'react';
+import React from 'react';
 import './Header.css';
 import LogoImg from '../../pic/logotop.png';
 import Login from '../Login/Login';
-import  { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
-const Header = () =>{
+const Header = () => {
 
-    return (
-
-      
-
-                                  <div className="row" >
-                                     <Login />
-                                    <nav className="navbar navbar-default navbar-fixed-top" id="header-background">
-                                      <div className="container-fluid">
-
-                                        <div className="col-md-4">
-
-
-                                                      <img alt="Brand" src={LogoImg} id="header-logo"/>
+  return (
 
 
 
-                                        </div>
+    <div className="row" >
+      <Login />
+      <nav className="navbar navbar-default " id="header-background">
+        <div className="container-fluid">
 
-                                        <div className="col-md-8">
-
-                                        <div id="header-top">
-
-                                            <ul className="nav nav-tabs" >
-                                      <li role="presentation" className="active" data-toggle="modal" data-target="#login-modal" ><a>LOGIN</a></li>
-                                      <li role="presentation"><a href="/register">REGISTER</a></li>
-                                      
-                                      <li role="presentation"><a href="#">LANGUAGE</a></li>
+          <div className="col-md-3">
 
 
-                                      <form className="navbar-form " role="search" id="search">
-                                        <div className="form-group">
-                                          <input type="text" className="form-control" placeholder="Search"/>
-                                        </div>
-                                        <button type="submit" className="btn btn-default">Submit</button>
-                                      </form>
+            <img alt="Brand" src={LogoImg} id="header-logo" />
 
 
-                                    </ul>
-
-                                   
 
 
-{/*modal*/}
-                            
-                                                    {/*<div className="container">
-  <h2>Modal Example</h2>
+          </div>
 
-  <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+          <div className="col-md-9">
+
+            <div id="header-top">
+
+              <ul className="nav nav-pills " id="header-topcss">
+                <li role="presentation" data-toggle="modal" data-target="#login-modal" ><a className="foractive">LOGIN</a></li>
+                <li role="presentation" ><a className="foractive" href="/register">REGISTER</a></li>
+
+                <li role="presentation" ><a className="foractive" href="#">LANGUAGE</a></li>
 
 
-  <div className="modal fade" id="myModal" role="dialog">
-    <div className="modal-dialog">
-    
- 
-      <div className="modal-content">
-        <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Modal Header</h4>
+                <form className="navbar-form " role="search" >
+                  <div className="form-group" >
+                    <input type="text" className="form-control" id="header-search" placeholder="Tracking No." />
+                  </div>
+                   <button type="submit" className="btn btn-default" id="header-search-button">Search</button> 
+                </form>
+
+
+              </ul>
+            </div>
+
+            <hr id="header-top-bottom-hr"/>
+
+            
+
+            <div id="header-bottom">
+              <ul className="nav nav-pills nav-justified">
+                <li role="presentation">
+                  <a className="foractive" href="/">HOME</a>
+                </li>
+                <li role="presentation">
+                  <a className="foractive" href="/service">SERVICE</a>
+                </li>
+                <li role="presentation">
+                  <a className="foractive" href="/promotion">PROMOTION</a>
+                </li>
+                <li role="presentation">
+                  <a className="foractive" href="#">PAYMENT</a>
+                </li>
+                <li role="presentation">
+                  <a className="foractive" href="#">ABOUT US</a>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+
         </div>
-        <div className="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
+        <hr id="horizonline" />
+      </nav>
     </div>
-  </div>
-  
-</div>*/}
 
-
-
-
-
-
-                                        </div>
-
-                                        <div id="header-bottom">
-                                        <ul className="nav nav-pills ">
-                                          <li role="presentation" className="active">
-                                            <a href="/">HOME</a>
-
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="/service">SERVICE</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="/promotion">PROMOTION</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="#">PAYMENT</a>
-                                          </li>
-                                          <li role="presentation">
-                                            <a href="#">ABOUT US</a>
-                                          </li>
-                                        </ul>
-                                        </div>
-
-
-                                        </div>
-
-                                      </div>
-
-                                    </nav>
-                                    </div>
-
-    );
-  };
+  );
+};
 
 
 export default Header;
