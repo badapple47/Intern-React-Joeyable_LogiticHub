@@ -22,6 +22,10 @@ class Service_Dashboard_Paid extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.getTracking = this.getTracking.bind(this)
+    this.checkRemove = this.checkRemove.bind(this)
+    this.checkDrop = this.checkDrop.bind(this)
+    this.postDeleteinformation = this.postDeleteinformation.bind(this)
+    this.postdropinformation = this.postdropinformation.bind(this)
     this.getTracking()
   }
 
@@ -37,59 +41,81 @@ getTracking() {
       })
   }
 
+checkPrice() {
+            // console.log(this.state.checkPrice)
+        
+        if ( this.state.priceLogistic === null ){
+             window.location="http://localhost:3000/service-Createorder"
+        }else {
+             window.location="http://localhost:3000/Service-Booking-Dropoff"
+            
+        }
+       
+    }
+
+checkRemove(){
+    window.location="http://localhost:3000/service-dashboard-paid"
+}
+
+checkDrop(){
+    window.location="http://localhost:3000/Service-Booking-Dropoff"
+}
+
+
 handleClick(e) {
 
-        this.state.selectedid[e.target.name] = e.target.value
+        this.state.selectedid[e.target.name] += " "+e.target.value
         this.setState(
             this.state
 
         )
     }
 
-// postdropinformation() {
-//     axios({
+postdropinformation() {
+    axios({
 
-//                           method:'put',
-//                           url:`http://localhost:3002/booking/dropoff`,
-//                           data: {
-//                             userinfo: this.state.userinformation,
-//                             OrderId: this.state.selectedid
-//                           },
-//                             headers: { Authorization: this.state.token }
-//                         })
-//                           .then((response)=> {
-//                         //   this.setState ({ data: response.data })
-//                         //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
-//                         //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
-//                         //    console.log(this.state.Basicprofile[0].Firstname)
-//                           //  console.log(this.state.Basicprofile)
-//                         })
-//                           .then(()=> {
-//                         //   console.log(this.state.data);
-//                         });
-// }
+                          method:'put',
+                          url:`http://localhost:3002/booking/prepare`,
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                        //   this.setState ({ data: response.data })
+                        //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
+                        //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
+                        //    console.log(this.state.Basicprofile[0].Firstname)
+                          //  console.log(this.state.Basicprofile)
+                        })
+                          .then(()=> {
+                        this.checkDrop()
+                        //   console.log(this.state.data);
+                        });
+}
 
-// postDeleteinformation() {
-//     axios({
+postDeleteinformation() {
+    axios({
 
-//                           method:'delete',
-//                           url:`http://localhost:3002/booking/delete/${this.state.orderId}`,
-//                           data: {
-//                             userinfo: this.state.userinformation
-//                           },
-//                             headers: { Authorization: this.state.token }
-//                         })
-//                           .then((response)=> {
-//                         //   this.setState ({ data: response.data })
-//                         //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
-//                         //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
-//                         //    console.log(this.state.Basicprofile[0].Firstname)
-//                           //  console.log(this.state.Basicprofile)
-//                         })
-//                           .then(()=> {
-//                         //   console.log(this.state.data);
-//                         });
-// }
+                          method:'put',
+                          url:'http://localhost:3002/booking/delete',
+                          data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                        //   .then((response)=> {
+                        // //   this.setState ({ data: response.data })
+                        // //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
+                        // //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
+                        // //    console.log(this.state.Basicprofile[0].Firstname)
+                        // //    console.log("1")
+                        // })
+                          .then(()=> {
+                        this.checkRemove()
+                        // console.log("2")
+                        });
+}
 
   render() {
 // this.getTracking()
@@ -124,9 +150,9 @@ handleClick(e) {
                                     < div id="fourrowbutton">
 
                                     <button type="button" className="btn purple-background white"  id="fourbuttonrow-1">   Choose all</button>
-                                    <button type="button" className="btn btn-default"  id="fourbuttonrow-2" onclick={this.postDeleteinformation}>   Remove</button>
-                                    <button type="button" className="btn purple-background white"  id="fourbuttonrow-3">   Pay All</button>
-
+                                    {/* <button type="button" className="btn btn-default"  id="fourbuttonrow-2" href="/Service-Booking-Dropoff" onclick={this.postDeleteinformation}>   Remove</button> */}
+                                    <a type="button" className="btn btn-default"  id="fourbuttonrow-2"  href="/service-dashboard-paid" onClick={this.postDeleteinformation}>Remove</a>
+                                    <a type="button" className="btn purple-background white"  id="fourbuttonrow-3" href="/Service-Booking-Dropoff" onClick={this.postdropinformation}>   Pay All</a>
                                     <nav aria-label="..." id="fourbuttonrow-4">
                                         <ul className="pager">
                                             <li><a href="#"> back </a></li>
@@ -175,7 +201,7 @@ handleClick(e) {
                                         <div className="cell" >
 
                                             <div className="prepare-checkbox">
-                                            <label><input type="checkbox" value={each._id} onClick={this.handleClick} /></label>
+                                            <label><input type="checkbox" name="OrderId" value={each._id} onClick={this.handleClick} /></label>
                                             </div>
 
                                         </div>
@@ -230,8 +256,9 @@ handleClick(e) {
 
                                     <div className="col-md-2">
                                         <div className="cell">
-                                            <div className="prepare-dropoff">
-                                                <a  type="button" className="btn purple-background white" id="paid-paynow" onclick={this.postdropinformation} href="/service-booking-dropoff" >Pay now</a>
+                                            <div className="prepare-dropoff">                                                                          
+                                                                                                                             {/* href="/service-booking-dropoff" */}
+                                                <a  type="button" className="btn purple-background white" id="paid-paynow" name="OrderId" value={each._id} href="/Service-Booking-Dropoff" onclick={this.postdropinformation}  >Pay now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +266,8 @@ handleClick(e) {
                                     <div className="col-md-1">
                                         <div className="cell">
                                             <div className="isrequired">
-                                                <button type="button" className="btn btn-default btn-block" id="paid-paynow" >EDIT</button>
+                                                                                                                            {/* href="/Service-Createorder/edit" tell joey*/}
+                                                <button type="button" className="btn btn-default btn-block" id="paid-paynow" name="OrderId" value={each._id}  id="paid-paynow" >EDIT</button>
 
 
                                             </div>

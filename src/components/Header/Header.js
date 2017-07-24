@@ -59,16 +59,16 @@ const Header = () => {
                   <a className="foractive" href="/">HOME</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="/service">SERVICE</a>
+                  <a className="foractive" href="/Service">SERVICE</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="/promotion">PROMOTION</a>
+                  <a className="foractive" href="/Promotion">PROMOTION</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="#">PAYMENT</a>
+                  <a className="foractive" href="/Payment">PAYMENT</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="#">ABOUT US</a>
+                  <a className="foractive" href="/AboutUs">ABOUT US</a>
                 </li>
               </ul>
             </div>

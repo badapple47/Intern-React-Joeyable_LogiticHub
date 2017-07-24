@@ -112,10 +112,10 @@ class Header2 extends Component {
                     <a href="/promotion" className="foractive">PROMOTION</a>
                   </li>
                   <li role="presentation">
-                    <a href="#" className="foractive">PAYMENT</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#" className="foractive">ABOUT US</a>
+                     <a className="foractive" href="/Payment">PAYMENT</a>
+                </li>
+                <li role="presentation">
+                  <a className="foractive" href="/AboutUs">ABOUT US</a>
                   </li>
                 </ul>
               </div>

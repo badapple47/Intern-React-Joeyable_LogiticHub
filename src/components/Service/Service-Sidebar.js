@@ -37,24 +37,21 @@ const Service_Sidebar = () => {
               <i className="glyphicon glyphicon-home"></i>
               Dashboard </a>
           </li>
-           <li>
-            <a href="/service-analysis">
-              <i className="glyphicon glyphicon-stats"></i>
-              Analysis</a>
-          </li>
+          
           <li>
             <a href="/service-tracking">
               <i className="glyphicon glyphicon-plane"></i>
               Tracking</a>
           </li>
           <li>
-            <a href="/service-history" target="_blank">
+            <a href="/service-history">
+            {/* target="_blank" */}
               <i className="glyphicon glyphicon-list-alt"></i>
               Delivery History
              </a>
           </li>
           <li>
-            <a href="/service-booking-dropoff">
+            <a href="/Service-ReceiverAddress">
               <i className="glyphicon glyphicon-user"></i>
              Receive Data </a>
           </li>

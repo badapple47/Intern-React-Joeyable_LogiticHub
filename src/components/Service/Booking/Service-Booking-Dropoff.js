@@ -1,10 +1,64 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './Service-Booking-Dropoff.css';
-
+import axios from 'axios'
 
 class Service_Booking_Dropoff extends Component {
+
+constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+      isLoading: true,
+      isToggleOn: false,
+      data:[],
+      datapost: {},
+      token : JSON.parse(localStorage.getItem('Token')),
+      email : JSON.parse(localStorage.getItem('Email')),
+      trackingresult:{trackno: "-"},
+      locationdropoff: {}
+
+    }
+    this.handleClick = this.handleClick.bind(this)
+    // this.getTracking = this.getTracking.bind(this)
+    this.postdropinformation = this.postdropinformation.bind(this)
+    // this.getTracking()
+  }
+
+     handleClick(e) {
+
+        this.state.locationdropoff[e.target.name] = e.target.value
+        this.setState(
+            this.state
+
+        )
+    }
+
+postdropinformation() {
+    axios({
+
+                          method:'put',
+                          url:`http://localhost:3002/booking/dropoff`,
+                        data: {
+                            userinfo: this.state.locationdropoff
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                            
+                        //   this.setState ({ data: response.data })
+                        //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
+                        //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
+                        //    console.log(this.state.Basicprofile[0].Firstname)
+                          //  console.log(this.state.Basicprofile)
+                        })
+                          .then(()=> {
+                        //   console.log(this.state.data);
+                        });
+}
+
   render() {
+    console.log(this.state.locationdropoff)
     return (
 
       <div className="childofbooking">
@@ -57,21 +111,19 @@ class Service_Booking_Dropoff extends Component {
           </div>
 
                              <div className="list-group" id="dropoff-locationlist">
-                              <a href="#" className="list-group-item active">
-                                Joeyable Bangyai
-                              </a>
-                              <a href="#" className="list-group-item">Joeyable RamaII</a>
-                              <a href="#" className="list-group-item">Joeyable Salaya</a>
-                              <a href="#" className="list-group-item">Joeyable Thonglor</a>
-                              <a href="#" className="list-group-item">Joeyable Krungton</a>
+                              <button name="location" value={"Bangyai"} className="list-group-item" onClick={this.handleClick}>Joeyable Bangyai</button>
+                              <button name="location" value={"RamaII"} className="list-group-item" onClick={this.handleClick}>Joeyable RamaII</button>
+                              <button name="location" value={"Salaya"} className="list-group-item" onClick={this.handleClick}>Joeyable Salaya</button>
+                              <button name="location" value={"Thonglor"} className="list-group-item" onClick={this.handleClick}>Joeyable Thonglor</button>
+                              <button name="location" value={"Krungton"} className="list-group-item" onClick={this.handleClick}>Joeyable Krungton</button>
                             </div>
                             
                           
 
         </center>
 
-
-        <a type="button" className="btn purple-background white glyphicon glyphicon-arrow-right" id="service-createorder-importfilebut" aria-hidden="true" href="/Service-Booking-Checkinfo">   NEXT</a>
+                                                                                                                   {/* href="/Service-Booking-Checkinfo"                                                                  */}
+        <a type="button" className="btn purple-background white glyphicon glyphicon-arrow-right" id="service-createorder-importfilebut" aria-hidden="true" href="/Service-Booking-Checkinfo" onClick={this.postdropinformation} >   NEXT</a>
 
 
 
