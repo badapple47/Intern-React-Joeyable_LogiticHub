@@ -52,16 +52,22 @@ class Login extends Component {
     }
 
         checkSignin() {
+            console.log(this.state.isSignin)
         
         if ( this.state.isSignin === 'Enjoy your token!')
         {
-            window.location="http://localhost:3000/Home-Member";
+            return 0 ;
+            
         }
         else if ( this.state.isSignin === 'Authentication failed. Wrong password.'){
              window.location="http://localhost:3000/register"
             // this.setState({ isSignin: 'incorrect username or password'})
         }
          else if ( this.state.isSignin === 'Authentication failed. User not found.'){
+             window.location="http://localhost:3000/register"
+            // this.setState({ isSignin: 'incorrect username or password'})
+        }
+        else {
              window.location="http://localhost:3000/register"
             // this.setState({ isSignin: 'incorrect username or password'})
         }
@@ -76,9 +82,10 @@ class Login extends Component {
         axios.post('http://localhost:3002/login', this.state.datapost)
             .then((res) => {
 
-                //  console.log(res.data)
+                 console.log(res.data)
                this.setState({ data: res.data })
                this.setState({ isSignin: res.data.message })
+               this.checkSignin()
               
             }).then(() => {
                 // console.log(this.state.data)
@@ -107,16 +114,17 @@ class Login extends Component {
                         localStorage.setItem('Lastname', JSON.stringify(this.state.Basicprofile.lastname));
                         localStorage.setItem('tel', JSON.stringify(this.state.Basicprofile.tel));
                         localStorage.setItem('Email', JSON.stringify(this.state.Basicprofile.email));
-                        this.checkSignin()
+                        window.location="http://localhost:3000/Home-Member";
+                        // this.checkSignin()
                         });
                         
 
 
-            }).then(()=> {
+            }).catch(()=> {
                     //    localStorage.setItem('Basicprofile', JSON.stringify(this.state.Basicprofile));
                     //     localStorage.setItem('Token', JSON.stringify(this.state.data.token));
                         
-
+                        // this.checkSignin()
 
             })
     }
