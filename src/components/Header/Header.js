@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './Header.css';
 import LogoImg from '../../pic/logotop.png';
 import Login from '../Login/Login';
@@ -6,7 +6,45 @@ import { Link } from 'react-router-dom';
 
 
 
-const Header = () => {
+class Header extends Component {
+
+   constructor(props) {
+    super(props);
+    this.state = {
+
+
+      datapost: {},
+
+    }
+     this.handleChange = this.handleChange.bind(this)
+      this.retotrackingpage = this.retotrackingpage.bind(this)
+      // this.togglepls = this.togglepls.bind(this);
+      
+	}
+
+	  handleChange(e) {
+
+        this.state.datapost[e.target.name] = e.target.value
+        // this.state.datapost[e.target.name.this.state.p] = e.target.value
+        this.setState(
+            this.state
+
+        )
+          console.log(this.state.datapost)
+				
+		}
+			
+		retotrackingpage(){
+       localStorage.setItem('Trackingfromhome', JSON.stringify(this.state.datapost.trackno));
+        
+				window.location="http://localhost:3000/Tracking"
+			
+		}
+
+
+ 
+  render(){
+
 
   return (
 
@@ -38,13 +76,14 @@ const Header = () => {
                 <li role="presentation" ><a className="foractive" href="#">LANGUAGE</a></li>
 
 
-                <form className="navbar-form " role="search" >
-                  <div className="form-group" >
-                    <input type="text" className="form-control" id="header-search" placeholder="Tracking No." />
-                  </div>
-                   <button type="submit" className="btn btn-default" id="header-search-button">Search</button> 
-                </form>
-
+                
+               
+                    <input type="text" className="form-control" id="header-search" placeholder="Tracking No." name="trackno" value={this.state.datapost.trackno} onChange={this.handleChange} />
+                    <button type="submit" className="btn btn-default" id="header-search-button" onClick={this.retotrackingpage} >Search</button> 
+                  
+                  
+               
+                
 
               </ul>
             </div>
@@ -68,8 +107,9 @@ const Header = () => {
                   <a className="foractive" href="/Payment">PAYMENT</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="/AboutUs">ABOUT US</a>
+                  <a className="foractive" href="/Tracking">TRACKING</a>
                 </li>
+                
               </ul>
             </div>
 
@@ -82,6 +122,7 @@ const Header = () => {
     </div>
 
   );
+  };
 };
 
 

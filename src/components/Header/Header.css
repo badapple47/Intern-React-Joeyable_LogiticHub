@@ -22,6 +22,7 @@
 
 #header-top-bottom-hr
 {
+  margin-top: -10px;
   border: none;
     height: 1px;
     /* Set the hr color */
@@ -60,13 +61,16 @@ margin-top:-10px;
 
  #header-search{
   margin-left:50px;
-  margin-top:-4px;
+  margin-top:5px;
   width:200px;
 }
+
+
 #header-search-button
 {
-   
-  margin-top:-4px;
+  
+  margin-top:-9%;
+  margin-left : 30%;
 } 
 
 

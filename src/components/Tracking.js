@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import AboutUs from './AboutUs/AboutUs';
+import Tracking from './Tracking/Tracking';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 
 
 
-class AboutUs_Route extends Component {
+class Tracking_Route extends Component {
   render() {
     return (
 
       <div >
         <Header/>
-        <AboutUs/>
+        <Tracking/>
         <Footer/>
         
 
@@ -24,4 +24,4 @@ class AboutUs_Route extends Component {
   }
 }
 
-export default AboutUs_Route;
+export default Tracking_Route;

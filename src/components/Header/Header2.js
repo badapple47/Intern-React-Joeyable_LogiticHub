@@ -15,23 +15,18 @@ class Header2 extends Component {
     this.state = {
 
 
-      // isToggleOn: false,
-      // data: ["test"],
-      // datapost: {},
-      // datafake : ["datanotfound"],
       token: localStorage.getItem('Token'),
       user : JSON.parse(localStorage.getItem('Firstname')),
-      // isModalOpen : true,
-      // Basicprofile : [],
-      // isSignin : "success"
+      datapost: {},
+
+    
 
     }
-    //  this.handleChange = this.handleChange.bind(this)
-    //   this.postTracking = this.postTracking.bind(this)
-    //    this.togglepls = this.togglepls.bind(this)
-    //     this.checkSignin = this.checkSignin.bind(this)
-    //    this.getTracking = this.getTracking.bind(this)
+    
+
     this.Logout = this.Logout.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+      this.retotrackingpage = this.retotrackingpage.bind(this)
   }
 
 
@@ -44,6 +39,25 @@ class Header2 extends Component {
 
 
   }
+    handleChange(e) {
+
+        this.state.datapost[e.target.name] = e.target.value
+        // this.state.datapost[e.target.name.this.state.p] = e.target.value
+        this.setState(
+            this.state
+
+        )
+          console.log(this.state.datapost)
+				
+		}
+			
+		retotrackingpage(){
+       localStorage.setItem('Trackingfromhome', JSON.stringify(this.state.datapost.trackno));
+        
+				window.location="http://localhost:3000/Tracking"
+			
+		}
+
 
 
   render() {
@@ -87,12 +101,12 @@ class Header2 extends Component {
                     </ul>
                   </div>
 
-                  <form className="navbar-form " role="search" >
+                  
                   <div className="form-group" >
-                    <input type="text" className="form-control" id="header-search2" placeholder="Tracking No." />
+                    <input type="text" className="form-control" id="header-search2" placeholder="Tracking No." name="trackno" value={this.state.datapost.trackno} onChange={this.handleChange}/>
                   </div>
-                   <button type="submit" className="btn btn-default" id="header-search-button2">Search</button> 
-                </form>
+                   <button type="submit" className="btn btn-default" id="header-search-button2" onClick={this.retotrackingpage} >Search</button> 
+                
 
 
                 </ul>
@@ -115,7 +129,7 @@ class Header2 extends Component {
                      <a className="foractive" href="/Payment">PAYMENT</a>
                 </li>
                 <li role="presentation">
-                  <a className="foractive" href="/AboutUs">ABOUT US</a>
+                  <a className="foractive" href="/Tracking">TRACKING</a>
                   </li>
                 </ul>
               </div>

@@ -4,21 +4,6 @@ import LogoCat from '../../../pic/cat.jpg';
 import axios from 'axios'
 import _ from 'lodash';
 
-// var token = "1231313"
-// axios({
-
-//   method:'post',
-//   url:'http://localhost:3002/trackno',
-//    data: {
-//     firstName: 'Fred',
-//     lastName: 'Flintstone'
-//   },
-//     headers: { Authorization: "Bearer " + token }
-// })
-//   .then(function(response) {
-//   console.log(response)
-// });
-
 
 class Service_Tracking extends Component {
 
@@ -34,12 +19,15 @@ class Service_Tracking extends Component {
       data:[],
       datapost: {},
       trackingresult:{trackno: "-"},
-      token : "123132313"
+      token : "123132313",
+      trackrequest: JSON.parse(localStorage.getItem('Trackingfromhome')),
 
     }
 
-
-
+    console.log(this.state.trackrequest)
+    console.log(this.state.data)
+    this.checkthatdataexist()
+      
       this.handleChange = this.handleChange.bind(this)
       this.postTracking = this.postTracking.bind(this)
       this.togglepls = this.togglepls.bind(this);
@@ -49,6 +37,7 @@ class Service_Tracking extends Component {
 
     handleChange(e) {
 
+
         this.state.datapost[e.target.name] = e.target.value
         // this.state.datapost[e.target.name.this.state.p] = e.target.value
         this.setState(
@@ -57,8 +46,45 @@ class Service_Tracking extends Component {
         )
     }
 
+    //from home page or header navbar
 
+    checkthatdataexist(){
+      console.log("function is runinng")
+       if (typeof this.state.token !== 'undefined' && this.state.token !== null) {
 
+          this.state.datapost.trackno = this.state.trackrequest
+          console.log(this.state.trackrequest)
+          console.log(this.state.datapost)
+
+         {this.requesttracking()}
+    
+         }else{
+           
+            alert("พังจ้า")
+         }
+      
+    }
+
+     requesttracking() {
+       
+        console.log("requesttracking is runinng")
+ 
+      //  this.setState({ trackingresult : window.location.pathname })
+        axios.post('http://localhost:3002/trackno', this.state.datapost)
+            .then((res) => {
+     //           console.log(res)
+                  this.setState({ data: res.data })
+            }).then(() => {
+                // refreshData()
+
+                console.log(this.state.data)
+                  {this.bringfirstdata()}
+                  // console.log(this.state.token)
+                  // console.log(this.state.data)
+                  // console.log(this.state.data.map((each) =>(each.Barcode)))
+
+            })
+    }
 
 
 
@@ -68,7 +94,7 @@ class Service_Tracking extends Component {
 
         const { refreshData } = this.props
         this.togglepls()
-    console.log(this.state.token)
+    // console.log(this.state.token)
         axios.post('http://localhost:3002/trackno', this.state.datapost)
             .then((res) => {
      //           console.log(res)
@@ -83,27 +109,6 @@ class Service_Tracking extends Component {
             })
     }
 
-
-
-
-
-// getTracking() {
-//     axios.get('http://localhost:3002/api1')
-//       .then((response) => {
-//         if(response){
-//    //       console.log("response")
-//          console.log(response.data);
-//           this.setState({ data: response.data })
-//         }else{
-//  //       console.log("not response")
-//  //       console.log(response.data[0]);
-//         this.setState({ data: response.data })
-//         }
-//       }).then(() => {
-//                 // console.log(this.state.data)
-
-//       })
-//   }
 
   togglepls() {
 
@@ -179,10 +184,10 @@ class Service_Tracking extends Component {
 
 
                {/*Wizard Progressbar ja*/}
-              <div className="container">
+              
                 <div className="row bs-wizard" >
 
-                  <div className="col-xs-3 bs-wizard-step complete">
+                  <div className="col-xs-4 bs-wizard-step complete">
                     <div className="text-center bs-wizard-stepnum">Step 1</div>
                     <div className="progress"><div className="progress-bar"></div></div>
                     <a href="#" className="bs-wizard-dot"></a>
@@ -190,20 +195,20 @@ class Service_Tracking extends Component {
                   </div>
 
 
-                  <div className="col-xs-3 bs-wizard-step active">
+                  <div className="col-xs-4 bs-wizard-step active">
                     <div className="text-center bs-wizard-stepnum">Step 3</div>
                     <div className="progress"><div className="progress-bar"></div></div>
                     <a href="#" className="bs-wizard-dot"></a>
                     <div className="bs-wizard-info text-center">Test2</div>
                   </div>
 
-                  <div className="col-xs-3 bs-wizard-step disabled">
+                  <div className="col-xs-4 bs-wizard-step disabled">
                     <div className="text-center bs-wizard-stepnum">Step 4</div>
                     <div className="progress"><div className="progress-bar"></div></div>
                     <a href="#" className="bs-wizard-dot"></a>
                     <div className="bs-wizard-info text-center"> Test3</div>
                   </div>
-                </div>
+                
               </div>
 
 

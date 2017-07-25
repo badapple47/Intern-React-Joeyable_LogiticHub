@@ -1,6 +1,26 @@
-import React  from 'react';                                                    
+import React , {Component} from 'react';                                                    
                                                     
- const Service_CreateOrder_Modal= () =>{
+class Service_CreateOrder_Modal extends Component{
+   constructor(props) {
+    super(props);
+    this.state = {
+    data:[],
+    getres: {},
+    token : JSON.parse(localStorage.getItem('Token')),
+    userinformation: {}
+
+    }
+
+      //   this.handleChange = this.handleChange.bind(this)
+      // this.postUserinformation = this.postUserinformation.bind(this)
+      //  this.togglepls = this.togglepls.bind(this)
+    //    this.getTracking = this.getTracking.bind(this)
+ }
+
+
+  render(){
+
+    
 
     return (                                                   
                                                     
@@ -51,6 +71,7 @@ import React  from 'react';
 
        );
   };
+};
 
 
 export default Service_CreateOrder_Modal;

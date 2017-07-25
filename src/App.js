@@ -10,7 +10,7 @@ import Home_Route2 from './components/Home2';
 import Register_Route from './components/Register';
 import Promotion_Route from './components/Promotion';
 import Payment_Route from './components/Payment';
-import AboutUs_Route from './components/AboutUs';
+import Tracking_Route from './components/Tracking';
 import Login from './components/Login/Login';
 import Dashboard from './components/Service/Dashboard';
 import DHistory from './components/Service/History';
@@ -65,7 +65,8 @@ class App extends Component {
         <Route path="/Service-History" component={DHistory} />
         <Route path="/Payment" component={Payment_Route} />
         <Route path="/Service-ReceiverAddress" component={ReceiverAddress} />
-        <Route path="/AboutUs" component={AboutUs_Route} />
+        <Route path="/Tracking" component={Tracking_Route} />
+        {/* this ^ is second tracking page  */}
         <Route path="/Service-Tracking" component={Tracking} />
         <Route path="/Service-CreateOrder" component={CreateOrder} />
         <Route path="/Service-Dashboard-Paid" component={Dashboard_Paid} />

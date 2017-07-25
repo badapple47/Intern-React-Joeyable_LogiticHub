@@ -9,8 +9,46 @@ import Promotion_1 from '../../pic/Promotion-1.jpg';
 import Promotion_2 from '../../pic/Promotion-2.jpg';
 import Promotion_3 from '../../pic/Promotion-3.jpg';
 
-const Home2 = () =>{
+class Home2 extends Component {
 
+	  constructor(props) {
+    super(props);
+    this.state = {
+
+			 datapost: {},
+
+
+    }
+
+
+
+      this.handleChange = this.handleChange.bind(this)
+      this.retotrackingpage = this.retotrackingpage.bind(this)
+      // this.togglepls = this.togglepls.bind(this);
+
+	}
+
+	  handleChange(e) {
+
+        this.state.datapost[e.target.name] = e.target.value
+        // this.state.datapost[e.target.name.this.state.p] = e.target.value
+        this.setState(
+            this.state
+
+				)
+				
+		}
+			
+		retotrackingpage(){
+			 localStorage.setItem('Trackingfromhome', JSON.stringify(this.state.datapost.trackno));
+				window.location="http://localhost:3000/Tracking"
+				// alert("Hello! I am an alert box!!");
+		}
+
+
+
+		render(){
+					console.log(this.state.datapost)
     return (
 <div>
                 <div className="jumbotron" id="body-header">
@@ -23,7 +61,7 @@ const Home2 = () =>{
 						                  <p>
 						                  Coolest Logistic Hub
 						                  </p>
-						                  <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+						                  <p><a className="btn btn-default btn-lg" href="#" role="button">Learn more</a></p>
 						    </div>
 
 
@@ -35,15 +73,15 @@ const Home2 = () =>{
 									    	TRACKING
 									    	</h2>
 
-                      <form action="Service-Tracking" method="post">
+                      
 								    	<div className="input-group">
-									      <input type="text" className="form-control" placeholder="Input tracking number here..."/>
+									      <input type="text" className="form-control"placeholder="Input tracking number here..." name="trackno" value={this.state.datapost.trackno} onChange={this.handleChange}/>
 									      <span className="input-group-btn">
-									        <button className="btn btn-default" type="Submit">Check</button>
+									        <button className="btn btn-default" type="Submit" onClick={this.retotrackingpage} >Check</button>
 									      </span>
 
 									 	</div>
-                    </form>
+                    
 
 
 									 	</div>
@@ -193,7 +231,8 @@ const Home2 = () =>{
 
 </div>
 
-    );
+		);
+		};
   };
 
 

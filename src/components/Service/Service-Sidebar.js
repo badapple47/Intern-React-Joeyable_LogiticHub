@@ -4,7 +4,25 @@ import LogoCat from '../../pic/cat.jpg';
 
 
 
-const Service_Sidebar = () => {
+class Service_Sidebar  extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      Firstname : JSON.parse(localStorage.getItem('Firstname')),
+      Lastname : JSON.parse(localStorage.getItem('Lastname'))
+
+    }
+
+
+
+      // this.handleChange = this.handleChange.bind(this)
+      // this.postTracking = this.postTracking.bind(this)
+      // this.togglepls = this.togglepls.bind(this);
+
+  }
+
+  render() {
 
   return (
 
@@ -18,8 +36,8 @@ const Service_Sidebar = () => {
 
       <div className="profile-usertitle">
         <div className="profile-usertitle-name">
-          Joey Pathompong
-                    </div>
+          {this.state.Firstname} {this.state.Lastname}
+        </div>
         <div className="profile-usertitle-job">
           Developer
                     </div>
@@ -53,7 +71,7 @@ const Service_Sidebar = () => {
           <li>
             <a href="/Service-ReceiverAddress">
               <i className="glyphicon glyphicon-user"></i>
-             Receive Data </a>
+             Receiver Address </a>
           </li>
         </ul>
       </div>
@@ -62,7 +80,11 @@ const Service_Sidebar = () => {
     </div>
 
 
-  );
+
+    );
+
+  };
 };
+
 
 export default Service_Sidebar;   
