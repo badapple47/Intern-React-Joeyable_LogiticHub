@@ -15,7 +15,8 @@ class Service_Booking_Payment extends Component {
 
     }
         this.postPrice = this.postPrice.bind(this);
-        {this.postPrice}
+        {this.postPrice()}
+      
     
  }
 
@@ -32,10 +33,11 @@ class Service_Booking_Payment extends Component {
 
     postPrice() {
    
-        
+        console.log("post to pricesummary to backend")
 
         axios.post('http://localhost:3002/omise/token', this.state.pricesummary)
             .then((res) => {
+                
 
                  console.log(res.data)
                this.setState({ data: res.data })   
@@ -47,6 +49,7 @@ class Service_Booking_Payment extends Component {
 
 
     render() {
+        
         return (
 
             <div className="childofbooking">
