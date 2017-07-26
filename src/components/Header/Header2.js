@@ -17,7 +17,7 @@ class Header2 extends Component {
 
       token: localStorage.getItem('Token'),
       user : JSON.parse(localStorage.getItem('Firstname')),
-      datapost: {},
+       datapost: {trackno: "" },
 
     
 

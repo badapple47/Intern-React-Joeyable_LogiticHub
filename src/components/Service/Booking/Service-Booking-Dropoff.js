@@ -66,7 +66,7 @@ postdropinformation() {
 
         <div className="row bs-wizard " id="pginchildofbooking" >
 
-          <div className="col-xs-2 bs-wizard-step complete">
+          <div className="col-xs-2 bs-wizard-step active">
             <div className="text-center bs-wizard-stepnum">Step 1</div>
             <div className="progress"><div className="progress-bar"></div></div>
             <a href="#" className="bs-wizard-dot"></a>
@@ -74,7 +74,7 @@ postdropinformation() {
           </div>
 
 
-          <div className="col-xs-2 bs-wizard-step active">
+          <div className="col-xs-2 bs-wizard-step disabled">
             <div className="text-center bs-wizard-stepnum">Step 2</div>
             <div className="progress"><div className="progress-bar"></div></div>
             <a href="#" className="bs-wizard-dot"></a>

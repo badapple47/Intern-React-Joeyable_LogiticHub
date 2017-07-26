@@ -36,22 +36,24 @@ class Service_CreateOrder_Modal extends Component {
       })
       .then(() => {
         //   console.log("pass get")
-        console.log(this.state.data)
+        // console.log(this.state.data)
       });
   }
 
 
   handleChange(e) {
 
+      console.log(e.target.value)
+        // this.state.receiverinfo.name = e.target.value
+        // this.state.receiverinfo.sirname = e.target.value[1]
+        this.state.receiverinfo = e.target.value
 
-        this.state.receiverinfo.name = e.target.value[0]
-        this.state.receiverinfo.sirname = e.target.value[1]
-        this.state.receiverinfo.address = e.target.value[2]
         this.setState(
             this.state
 
         )
           localStorage.setItem('CO_info', JSON.stringify(this.state.receiverinfo));
+          window.location="http://localhost:3000/service-createorder"
 
           
     }
@@ -108,7 +110,7 @@ class Service_CreateOrder_Modal extends Component {
                     <div id="eachreceiveraddr"> 
                       <h4>Name: {each.Firstname_r} {each.Lastname_r}</h4>
                       <h4>Address: {each.Address_r}</h4>
-                      <button type="button" className="btn btn-default btn-block" id="choosereceiveraddbutton" onClick={this.handleChange} value={[each.Firstname_r,each.Lastname_r,each.Address_r]}  data-dismiss="modal">Choose</button>
+                      <button type="button" className="btn btn-default btn-block" id="choosereceiveraddbutton" onClick={this.handleChange} value={each.Address_r} >Choose</button>
 
                     </div>
                     ))} 

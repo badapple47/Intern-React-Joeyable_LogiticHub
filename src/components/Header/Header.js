@@ -13,7 +13,7 @@ class Header extends Component {
     this.state = {
 
 
-      datapost: {},
+      datapost: {trackno: "" },
 
     }
      this.handleChange = this.handleChange.bind(this)

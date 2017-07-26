@@ -20,22 +20,67 @@ class Service_CreateOrder extends Component {
     }
 
         this.handleChange = this.handleChange.bind(this)
+         this.handleChange2 = this.handleChange2.bind(this)
+         this.handleChange3 = this.handleChange3.bind(this)
       this.postUserinformation = this.postUserinformation.bind(this)
-      //  this.togglepls = this.togglepls.bind(this)
-    //    this.getTracking = this.getTracking.bind(this)
-    console.log(this.state.CO_info.name)
+       this.testifitwork = this.testifitwork.bind(this)
+       {this.handleChange3()}
+      
   
  }
 
   handleChange(e) {
-
+     
+        
         this.state.userinformation[e.target.name] = e.target.value
         this.setState(
             this.state
 
         )
+         
     }
 
+handleChange2(e) {
+        this.state.CO_info= e.target.value
+   
+        this.setState(
+            this.state
+
+        )
+          localStorage.setItem('CO_info', JSON.stringify(this.state.CO_info));
+
+          this.state.userinformation.receiveaddress = this.state.CO_info
+          this.setState(
+            this.state
+
+        )      
+
+
+    }
+
+    handleChange3(e) {
+       
+
+          this.state.userinformation.receiveaddress = this.state.CO_info
+          this.setState(
+            this.state
+
+        )      
+    }
+
+
+  
+
+
+    testifitwork(){
+      
+      console.log(this.state.userinformation)
+    }
+
+    
+
+
+    
     //  postUserinformation() {
 
     //   //  this.setState({ trackingresult : window.location.pathname })
@@ -73,6 +118,7 @@ postUserinformation() {
                         })
                           .then(()=> {
                           console.log(this.state.data);
+                          localStorage.setItem('CO_info', JSON.stringify(""));
                         });
 }
 
@@ -149,7 +195,7 @@ postUserinformation() {
                                                   <input type="Email" className="form-control" id="email" placeholder="Enter Name" name="sendername" value={this.state.userinformation.name} onChange={this.handleChange} />
                                             </div>
                                             <div className="col-sm-3">
-                                                  <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseSeAddressmodal">Choose Address</button>
+                                                  {/* <button type="button" className="btn purple-background white active" data-toggle="modal" data-target="#CreateOrder-ChooseSeAddressmodal">Choose Address</button> */}
                                             </div>
 
 
@@ -195,7 +241,7 @@ postUserinformation() {
                                           <div className="form-group">
                                             <label className="control-label col-sm-3" for="pwd">Address:</label>
                                             <div className="col-sm-8">
-                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="receiveaddress" value={this.state.userinformation.name} onChange={this.handleChange} />
+                                                <input type="Email" className="form-control" id="createorder-address" placeholder="" name="receiveaddress" value={this.state.CO_info} onChange={this.handleChange2} />
                                             </div>
                                           </div>
 
@@ -208,7 +254,7 @@ postUserinformation() {
 
                           <div className = "container">
                             <center>
-                           <button type="button" className="btn btn-default " id="CreateOrder-SavenAddmore-buttton">Save and Add more</button>
+                           <a type="button" className="btn btn-default " id="CreateOrder-SavenAddmore-buttton" onClick={this.testifitwork} >Save and Add more</a>
                             <a type="button" className="btn purple-background white "id="CreateOrder-Save-button" href="/Service-CreateOrder-Logistic"  onClick={this.postUserinformation}>Save</a> 
 
 

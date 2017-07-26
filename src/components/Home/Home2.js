@@ -15,7 +15,7 @@ class Home2 extends Component {
     super(props);
     this.state = {
 
-			 datapost: {},
+			  datapost: {trackno: "" },
 
 
     }

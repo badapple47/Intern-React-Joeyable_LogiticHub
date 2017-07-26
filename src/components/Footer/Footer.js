@@ -33,20 +33,32 @@ const Footer = () =>{
       </div>
 
       <div className = "col-md-4">
-        <div id="sitemap">
-          <h4> SITEMAP </h4>
-          <p>    HOME </p>
-          <p>    SERVICE </p>
-          <p>    PROMOTION </p>
-          <p>    LOGISTIC </p>
-          <p>    FEEDBACK </p>
-        </div>
+                  
+                  <div id="footer-middle">
+                  <h3 className="footerlink">SITEMAP</h3>
+                
+                <li role="presentation">
+                  <a className="footerlink" href="/">HOME</a>
+                </li>
+                <li role="presentation">
+                  <a className="footerlink" href="/Service">SERVICE</a>
+                </li>
+                <li role="presentation">
+                  <a className="footerlink" href="/Promotion">PROMOTION</a>
+                </li>
+                <li role="presentation">
+                  <a className="footerlink" href="/Payment">PAYMENT</a>
+                </li>
+                <li role="presentation">
+                  <a className="footerlink" href="/Tracking">TRACKING</a>
+                </li>
+                </div>
 
       </div>
 
       <div className = "col-md-4">
         <div id="contact-us">
-          <h4> Contact Us </h4>
+          <h3> Contact Us </h3>
           <p>    21/333 Gable Road </p>
           <p>    Bangkok 10310 Thailand </p>
           <p>    Tel. 02-4329999 </p>

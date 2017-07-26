@@ -65,14 +65,14 @@ class Service_Booking_Payment extends Component {
                     </div>
 
 
-                    <div className="col-xs-2 bs-wizard-step active">
+                    <div className="col-xs-2 bs-wizard-step complete">
                         <div className="text-center bs-wizard-stepnum">Step 2</div>
                         <div className="progress"><div className="progress-bar"></div></div>
                         <a href="#" className="bs-wizard-dot"></a>
                         <div className="bs-wizard-info text-center">Check Information</div>
                     </div>
 
-                    <div className="col-xs-2 bs-wizard-step disabled">
+                    <div className="col-xs-2 bs-wizard-step active">
                         <div className="text-center bs-wizard-stepnum">Step 3</div>
                         <div className="progress"><div className="progress-bar"></div></div>
                         <a href="#" className="bs-wizard-dot"></a>
