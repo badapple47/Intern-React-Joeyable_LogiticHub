@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Script from 'react-load-script'
 import './Service-ReceiverAddress.css';
+import axios from 'axios'; 
 // import Calendar from './calendar'
 // import './Service-Booking-Checkinfo.css';
 // import LogoDHL from '../../../pic/checkinfopack.png';
@@ -9,32 +10,113 @@ import './Service-ReceiverAddress.css';
 
 class Service_History extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-
-
-
-        }
-
+ constructor(props) {
+    super(props);
+    this.state = {
+    data:[],
+    getres: {},
+    token : JSON.parse(localStorage.getItem('Token')),
+    userinformation: {},
+    useraddr:{}
 
     }
+    this.requestinformation()
+    this.handleChange = this.handleChange.bind(this)
+      this.postUserinformation = this.postUserinformation.bind(this)
+      this.setname = this.setname.bind(this)
+      
+      //  this.togglepls = this.togglepls.bind(this)
 
-    // componentWillMount() {
-    //         const script = document.createElement("script");
+ }
 
-    //         script.src = "https://cdn.omise.co/card.js";
-    //         script.async = true;
+ postUserinformation() {
+    axios({
 
+                          method:'post',
+                          url:'http://localhost:3002/information/add',
+                          data: {
+                            userinfo: this.state.userinformation
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                        //   this.setState ({ data: response.data })
+                        //   localStorage.setItem('OrderId', JSON.stringify(this.state.data.OrderId));
+                        //   localStorage.setItem('PriceLogistic', JSON.stringify(this.state.data.PriceLogistic));
+                        //    console.log(this.state.Basicprofile[0].Firstname)
+                          //  console.log(this.state.Basicprofile)
+                        })
+                          .then(()=> {
+                            //   console.log("pass post")
+                              this.backview()
+                        //   console.log(this.state.data);
+                        });
+}
 
+requestinformation() {
+    axios({
 
-    //         document.body.appendChild(script);
-    //     }
+                          method:'post',
+                          url:'http://localhost:3002/information/addr',
+                          data: {
+                            userinfo: this.state.userinformation
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                        this.setState({ data: response.data })
+                        })
+                          .then(()=> {
+                            //   console.log("pass get")
+                              console.log(this.state.data)
+                        });
+}
 
+deleteaddr() {
+    axios({
 
+                          method:'put',
+                          url:'http://localhost:3002/information/useraddr',
+                          data: {
+                            userinfo: this.state.useraddr
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then(()=> {
+                              this.backview()
+                            //   console.log("pass delete")
+                            //   console.log(this.state.userinformation)
+                        });
+}
+
+backview() {
+           
+             window.location="http://localhost:3000/Service-ReceiverAddress" 
+    }
+
+setname(e){
+    // console.log(e.target.value)
+    this.state.useraddr = e.target.value
+    this.setState(this.state)
+    // this.setState ({ useraddr : e.target.value })
+    // this.setState({useraddr: value})
+    // console.log(this.state.useraddr)
+    this.deleteaddr()
+}
+
+   handleChange(e) {
+
+        this.state.userinformation[e.target.name] = e.target.value
+        // this.state.datapost[e.target.name.this.state.p] = e.target.value
+        this.setState(
+            this.state
+
+        )
+    }
 
 
     render() {
+        // console.log(this.state.userinformation)
         return (
 
             <div >
@@ -46,13 +128,13 @@ class Service_History extends Component {
 
                 <div className="col-md-8">
                     <div className="form-group">
-                        <input type="text" className="form-control" id="ReceiverName" placeholder="Name" />
-                        <textarea className="form-control" rows="4" id="ReceiverAddress" placeholder="Address"></textarea>
+                        <input type="text" className="form-control" id="ReceiverName" placeholder="Name" name="receivename" value={this.state.userinformation.name} onChange={this.handleChange} />
+                        <textarea className="form-control" rows="4" id="ReceiverAddress" placeholder="Address" name="receiveaddress" value={this.state.userinformation.name} onChange={this.handleChange}></textarea>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <a type="button" className="btn purple-background white" id="ReceiverAddress-AddBut">   Add  </a>
+                    <a type="button" className="btn purple-background white" id="ReceiverAddress-AddBut" onClick={this.postUserinformation}>   Add  </a>
                 </div>
 
 
@@ -75,14 +157,14 @@ class Service_History extends Component {
 
 
 
-                              
+                         {this.state.data.map((each) =>(  
                             <div className="method">
                                 <div className="row margin-0">
                                     <div className="col-md-4" >
                                         <div className="cell" >
 
-                                            <div className="prepare-checkbox">
-                                            
+                                            <div className="prepare-checkbox" >
+                                             {each.Firstname_r} {each.Lastname_r} 
                                             </div>
 
                                         </div>
@@ -91,7 +173,7 @@ class Service_History extends Component {
                                     <div className="col-md-6">
                                         <div className="cell">
                                             <div className="prepare-trackingcode">
-                                                
+                                            {each.Address_r}
                                       </div>
                                         </div>
                                     </div>
@@ -103,7 +185,7 @@ class Service_History extends Component {
                                     <div className="col-md-2">
                                         <div className="cell">
                                             <div className="isrequired">
-                                                <button type="button" className="btn btn-default btn-block" id="paid-paynow" >DELETE</button>
+                                                <button type="button" className="btn btn-default btn-block" id="paid-paynow"name="namedelete" value={each.Firstname_r} onClick={this.setname}  >DELETE</button>
 
 
                                             </div>
@@ -116,7 +198,7 @@ class Service_History extends Component {
 
                             </div>
                         
-
+                         ))} 
                         </div>
                         
 

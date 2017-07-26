@@ -1,10 +1,51 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './Service-Dashboard-Paid.css';
-
+import axios from 'axios'
 
 class Service_Dashboard_Complete extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+      isLoading: true,
+      isToggleOn: false,
+      data:[],
+      datapost: {},
+      token : JSON.parse(localStorage.getItem('Token')),
+      email : JSON.parse(localStorage.getItem('Email')),
+      trackingresult:{trackno: "-"},
+      selectedid: {},
+      amount:[]
+
+    }
+    
+    this.postdropinformation()
+  }
+
+  postdropinformation() {
+    axios({
+
+                          method:'post',
+                          url:'http://localhost:3002/booking/complete',
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                          this.setState ({ data: response.data.data })
+                          this.setState ({ amount: response.data.amount })
+                        
+                        })
+                          .then(()=> {
+                        // this.checkDrop()
+                          console.log(this.state.data);
+                          console.log(this.state.amount);
+                        });
+}  
+  
+    render() {
     return (
 
       <div >
@@ -68,7 +109,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-1"><div className="header" id="header-prepare">Track No</div></div>
                                     <div className="col-md-2"><div className="header" id="header-prepare">Recipient's Name</div></div>
                                     <div className="col-md-2"><div className="header" id="header-prepare">Address</div></div>
-                                    <div className="col-md-1"><div className="header" id="header-prepare">Postcode</div></div>
+                                    {/* <div className="col-md-1"><div className="header" id="header-prepare">Postcode</div></div> */}
                                     <div className="col-md-1"><div className="header" id="header-prepare">Date</div></div>
                                     <div className="col-md-1"><div className="header" id="header-prepare">Logistic</div></div>
                                     <div className="col-md-2"><div className="header" id="header-prepare">Dropoff</div></div>
@@ -81,6 +122,7 @@ class Service_Dashboard_Complete extends Component {
 
 
 
+                            {this.state.data.map((each) =>(
                             <div className="method">
                                 <div className="row margin-0">
 
@@ -88,7 +130,7 @@ class Service_Dashboard_Complete extends Component {
                                         <div className="cell" >
 
                                             <div className="prepare-checkbox">
-                                            JS12345556
+                                            <label><input type="checkbox" value="" /></label>
                                             </div>
 
                                         </div>
@@ -97,7 +139,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-1">
                                         <div className="cell">
                                             <div className="prepare-trackingcode">
-                                                ET23123131
+                                                Trackno
                                       </div>
                                         </div>
                                     </div>
@@ -105,7 +147,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-2">
                                         <div className="cell">
                                             <div className="prepare-Recipient">
-                                                Joey
+                                                {each.Firstname_r} {each.Lastname_r}
                                       </div>
                                         </div>
                                     </div>
@@ -113,22 +155,22 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-2">
                                         <div className="cell">
                                             <div className="prepare-address">
-                                                525/213 Prachautit 76
+                                                {each.Address_r}
                                       </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-1">
+                                    {/* <div className="col-md-1">
                                         <div className="cell">
                                             <div className="prepare-postcode">
                                                 10140
                                       </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     <div className="col-md-1">
                                         <div className="cell">
                                             <div className="prepare-date">
-                                                22-06-2017
+                                                {each.reg_time}
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +178,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-1">
                                         <div className="cell">
                                             <div className="prepare-logistic">
-                                                Fedex
+                                                {each.Logistic}
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +186,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-2">
                                         <div className="cell">
                                             <div className="prepare-dropoff">
-                                                Soi Lat Ya
+                                                {each.Drop_location}
                                             </div>
                                         </div>
                                     </div>
@@ -152,9 +194,7 @@ class Service_Dashboard_Complete extends Component {
                                     <div className="col-md-1">
                                         <div className="cell">
                                             <div className="isrequired">
-                                                Complete
-
-                                               
+                                                <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -164,6 +204,7 @@ class Service_Dashboard_Complete extends Component {
 
 
                             </div>
+                        ))}
 
                         </div>
 

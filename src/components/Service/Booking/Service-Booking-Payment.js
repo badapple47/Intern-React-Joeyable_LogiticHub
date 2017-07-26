@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './Service-Booking-Dropoff.css';
+import axios from 'axios'
 
 
 class Service_Booking_Payment extends Component {
+
+    constructor(props) {
+    super(props);
+    this.state = {
+
+    data: {},
+     pricesummary : "999.99"
+
+    }
+        this.postPrice = this.postPrice.bind(this);
+    
+ }
 
     componentWillMount() {
         const script = document.createElement("script");
@@ -15,6 +28,20 @@ class Service_Booking_Payment extends Component {
 
         document.body.appendChild(script);
     }
+
+    postPrice() {
+   
+        
+
+        axios.post('http://localhost:3002/omise/token', this.state.pricesummary)
+            .then((res) => {
+
+                 console.log(res.data)
+               this.setState({ data: res.data })   
+            }).then(() => {
+                console.log(this.state.data)
+
+                })}
 
 
 

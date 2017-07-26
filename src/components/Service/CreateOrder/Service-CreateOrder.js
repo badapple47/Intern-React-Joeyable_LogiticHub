@@ -14,7 +14,8 @@ class Service_CreateOrder extends Component {
     data:[],
     getres: {},
     token : JSON.parse(localStorage.getItem('Token')),
-    userinformation: {}
+    userinformation: {},
+    CO_info: JSON.parse(localStorage.getItem('CO_info'))
 
     }
 
@@ -22,6 +23,8 @@ class Service_CreateOrder extends Component {
       this.postUserinformation = this.postUserinformation.bind(this)
       //  this.togglepls = this.togglepls.bind(this)
     //    this.getTracking = this.getTracking.bind(this)
+    console.log(this.state.CO_info.name)
+  
  }
 
   handleChange(e) {

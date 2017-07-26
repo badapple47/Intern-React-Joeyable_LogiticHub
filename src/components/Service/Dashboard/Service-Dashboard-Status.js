@@ -5,15 +5,9 @@ import LogoWaiting from '../../../pic/waiting.png';
 import LogoComplete from '../../../pic/complete.png';
 import LogoBooking from '../../../pic/booking.png';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import axios from 'axios'
 
-
-
-
-const Service_Dashboard_Status = () => {
-
-
-
-    const data = [
+const data = [
         { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
         { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
         { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
@@ -23,6 +17,112 @@ const Service_Dashboard_Status = () => {
         { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
     ];
 
+class Service_Dashboard_Status extends Component {
+    
+constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+      isLoading: true,
+      isToggleOn: false,
+      data:[],
+      amount_complete:[],
+      amount_waiting:[],
+      amount_shipping:[],
+      amount_booking:[],
+      datapost: {},
+      token : JSON.parse(localStorage.getItem('Token')),
+      email : JSON.parse(localStorage.getItem('Email')),
+      trackingresult:{trackno: "-"},
+      selectedid: {}
+
+    }
+    
+    this.postcomplete()
+    this.postshipping()
+    this.postwaiting()
+    this.postbooking()
+
+    
+  }
+postcomplete() {
+    axios({
+
+                          method:'post',
+                          url:'http://localhost:3002/booking/complete',
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                          this.setState ({ amount_complete: response.data.amount })
+                        
+                        })
+                          .then(()=> {
+                        //   console.log(this.state.amount_complete);
+                        });
+} 
+
+postshipping() {
+    axios({
+
+                          method:'post',
+                          url:'http://localhost:3002/booking/shipping',
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                          this.setState ({ amount_shipping: response.data.amount })
+                        
+                        })
+                          .then(()=> {
+                        //   console.log(this.state.amount_shipping);
+                        });
+} 
+
+postwaiting() {
+    axios({
+
+                          method:'post',
+                          url:'http://localhost:3002/booking/waiting',
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                          this.setState ({ amount_waiting: response.data.amount })
+                        
+                        })
+                          .then(()=> {
+                        //   console.log(this.state.amount_waiting);
+                        });
+} 
+
+postbooking() {
+    axios({
+
+                          method:'get',
+                          url:`http://localhost:3002/booking/${this.state.email}`,
+                        data: {
+                            userinfo: this.state.selectedid
+                          },
+                            headers: { Authorization: this.state.token }
+                        })
+                          .then((response)=> {
+                          this.setState ({ amount_booking: response.data.amount })
+                        
+                        })
+                          .then(()=> {
+                          console.log(this.state.amount_booking);
+                        });
+} 
+
+
+    render(){
 
     return (
 
@@ -45,7 +145,8 @@ const Service_Dashboard_Status = () => {
 
                                         <div className="panel-body dashboard-logobooking">
 
-                                            <center id="txtforlogo" > <h3> Booking </h3> </center >
+                                            <center id="txtforlogo" > <h3> Booking {this.state.amount_booking}</h3> </center >
+                                            
                                             {/*<img src={LogoBooking} id="Service-Dashboard-Status-Logo"/>*/}
 
                                         </div>
@@ -59,7 +160,7 @@ const Service_Dashboard_Status = () => {
                                 <a href="/service-dashboard-prepare" class="thumbnail">
                                     <div className="panel panel-default logopadtop">
                                         <div className="panel-body dashboard-logowaiting">
-                                            <center id="txtforlogo" > <h3> Waiting </h3> </center >
+                                            <center id="txtforlogo" > <h3> Waiting {this.state.amount_waiting}</h3> </center >
                                             {/*<img src={LogoWaiting} id="Service-Dashboard-Status-Logo"/>*/}
                                         </div>
                                     </div>
@@ -70,7 +171,7 @@ const Service_Dashboard_Status = () => {
                                 <a href="/service-dashboard-shipping" class="thumbnail">
                                     <div className="panel panel-default logopadtop">
                                         <div className="panel-body dashboard-logoshipping">
-                                            <center id="txtforlogo" > <h3> Shipping </h3> </center >
+                                            <center id="txtforlogo" > <h3> Shipping {this.state.amount_shipping}</h3> </center >
                                             {/*<img src={LogoShipping} id="Service-Dashboard-Status-Logo"/>*/}
                                         </div>
                                     </div>
@@ -82,7 +183,7 @@ const Service_Dashboard_Status = () => {
                                 <a href="/service-dashboard-complete" class="thumbnail">
                                     <div className="panel panel-default logopadtop">
                                         <div className="panel-body dashboard-logocomplete">
-                                            <center id="txtforlogo" > <h3> Complete </h3> </center >
+                                            <center id="txtforlogo" > <h3> Complete {this.state.amount_complete}</h3> </center >
                                             {/*<img src={LogoComplete} id="Service-Dashboard-Status-Logo"/>*/}
                                         </div>
                                     </div>
@@ -129,6 +230,7 @@ const Service_Dashboard_Status = () => {
 
 
     );
+};
 };
 
 export default Service_Dashboard_Status;   
