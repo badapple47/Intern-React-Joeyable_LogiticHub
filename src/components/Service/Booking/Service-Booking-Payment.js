@@ -15,6 +15,7 @@ class Service_Booking_Payment extends Component {
 
     }
         this.postPrice = this.postPrice.bind(this);
+        {this.postPrice}
     
  }
 
