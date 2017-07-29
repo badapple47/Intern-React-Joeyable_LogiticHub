@@ -25,9 +25,22 @@ class Service_CreateOrder extends Component {
       this.postUserinformation = this.postUserinformation.bind(this)
        this.testifitwork = this.testifitwork.bind(this)
        {this.handleChange3()}
+
       
   
  }
+      checkPrice() {
+            // console.log(this.state.checkPrice)
+        
+        if ( this.state.priceLogistic === null ){
+             window.location="http://localhost:3000/service-Createorder"
+        }else {
+             window.location="http://localhost:3000/Service-CreateOrder-Logistic"
+            
+        }
+       
+    }
+
 
   handleChange(e) {
      
@@ -119,6 +132,7 @@ postUserinformation() {
                           .then(()=> {
                           console.log(this.state.data);
                           localStorage.setItem('CO_info', JSON.stringify(""));
+                          this.checkPrice()
                         });
 }
 

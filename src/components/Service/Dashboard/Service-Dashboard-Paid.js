@@ -16,7 +16,7 @@ class Service_Dashboard_Paid extends Component {
       token : JSON.parse(localStorage.getItem('Token')),
       email : JSON.parse(localStorage.getItem('Email')),
       trackingresult:{trackno: "-"},
-      token : "123132313",
+      
       selectedid: {}
 
     }
@@ -69,6 +69,7 @@ handleClick(e) {
             this.state
 
         )
+        
     }
 
 postdropinformation() {
@@ -118,6 +119,7 @@ postDeleteinformation() {
 }
 
   render() {
+      console.log(this.state.selectedid)
 // this.getTracking()
     return (
 

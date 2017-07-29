@@ -11,11 +11,15 @@ class Service_Booking_Payment extends Component {
     this.state = {
 
     data: {},
-     pricesummary : "999.99"
+    price_order : JSON.parse(localStorage.getItem('Price')),
+    pricesummary : "0"
+    // price_order : (this.pricesummary)*100
+    // pricesummary: 99999
 
     }
         this.postPrice = this.postPrice.bind(this);
-        {this.postPrice()}
+        this.sum()
+        // {this.postPrice()}
       
     
  }
@@ -35,7 +39,7 @@ class Service_Booking_Payment extends Component {
    
         console.log("post to pricesummary to backend")
 
-        axios.post('http://localhost:3002/omise/token', this.state.pricesummary)
+        axios.post('http://localhost:3002/booking/omise', this.state.pricesummary)
             .then((res) => {
                 
 
@@ -46,10 +50,18 @@ class Service_Booking_Payment extends Component {
 
                 })}
 
-
+    sum(){
+        var test = 0
+        test = this.state.price_order
+        test = test*100
+        this.state.pricesummary =  test;
+        // console.log(test)
+        this.setState(this.state)
+        console.log(this.state.pricesummary)
+    }
 
     render() {
-        
+        // console.log(this.state.pricesummary)
         return (
 
             <div className="childofbooking">
@@ -101,14 +113,14 @@ class Service_Booking_Payment extends Component {
 
                     <div className="col-md-6">
                         <center>
-                        <p> NO.123456789 </p>
+                        <p> Track No :  </p>
                         </center>
                         <hr/>
                     </div>
 
                     <div className="col-md-6">
                         <center>
-                        <p> TOTAL = 128 BATH </p>
+                        <p> {this.state.price_order} </p>
                         </center>
                         <hr/>
 
@@ -118,21 +130,21 @@ class Service_Booking_Payment extends Component {
 
 
 <center>
-    <form name="checkoutForm" method="POST" action="http://localhost:3002/omise/token"> 
-       <input type="hidden" name="description" value="Product order ฿100.25" />    
+    <form name="checkoutForm" method="post" action="http://localhost:3002/booking/omise">
+       <input type="hidden" name="description" value={"Product order "+this.state.pricesummary} />
+    <input type="hidden" name="amount" value={this.state.pricesummary} />
     <script type="text/javascript"
-      data-key="pkey_test_58owl9vixkpv13fyhdv"
+      data-key="pkey_test_58ogpp3cvoe2bi0k2xm"
       data-frame-label="Joeyable Logistic Hub"
       data-button-label="Pay now"
       data-submit-label="Submit"
-      data-location="yes"
-      data-amount="12800"
+      data-amount= {this.state.pricesummary}
       data-currency="thb"
-      
+
       >
     </script>
 
-      </form>  
+      </form>
 
 
       </center>
